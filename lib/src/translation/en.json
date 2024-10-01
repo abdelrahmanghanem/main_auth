@@ -1,0 +1,14 @@
+{
+  "can_not_be_empty": "Field can't be empty",
+  "login_": "Login",
+  "don't_have_an_account": "Don't have an account?",
+  "sign_up": "Sign up",
+  "sign_in_with_apple": "Sign in with Apple",
+  "sign_in_with_x": "Sign in with X",
+  "sign_in_with_facebook": "Sign in with Facebook",
+  "sign_in_with_google": "Sign in with Google",
+  "enter_with": "Login with",
+  "forgot_password": "Forgot password?",
+  "by_registering": "By registering in the application, you agree to",
+  "": ""
+}
