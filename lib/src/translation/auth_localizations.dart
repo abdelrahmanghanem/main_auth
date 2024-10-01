@@ -3,23 +3,25 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// This class handles the localization of validation messages based on the current locale.
+/// A class responsible for loading and providing localized validation messages.
 ///
-/// The class loads the appropriate JSON file for the locale and provides methods
-/// to retrieve localized validation messages.
+/// This class handles loading the appropriate JSON file for the current locale
+/// and retrieving localized validation messages based on the locale.
 ///
-/// - [locale]: The locale for which the localizations will be loaded.
+/// - [locale]: The locale for which the localization is loaded.
 class AuthLocalizations {
   final Locale locale;
 
   AuthLocalizations(this.locale);
 
-  /// Retrieves the [AuthLocalizations] instance for the current [BuildContext].
+  /// Retrieves the current [AuthLocalizations] instance from the given [BuildContext].
   ///
-  /// - Parameters:
-  ///   - [context]: The current BuildContext.
+  /// This method allows widgets to access the current localization based on
+  /// the context's locale.
   ///
-  /// - Returns: The [AuthLocalizations] instance or null if not found.
+  /// - [context]: The current [BuildContext] to retrieve the localization from.
+  ///
+  /// - Returns: The [AuthLocalizations] instance if found, or `null` if not available.
   static AuthLocalizations? of(BuildContext context) {
     return Localizations.of<AuthLocalizations>(
       context,
@@ -27,20 +29,20 @@ class AuthLocalizations {
     );
   }
 
-  /// A delegate for loading the localized validation messages.
+  /// The delegate responsible for loading the localized validation messages.
   ///
-  /// This delegate is required to integrate with Flutter's localization system.
+  /// This delegate is required for integrating with Flutter's localization system.
   static const LocalizationsDelegate<AuthLocalizations> delegate =
       _AuthLocalizationsDelegate();
 
   late Map<String, String> _localizedStrings;
 
-  /// Loads the localized strings from a JSON file based on the current locale.
+  /// Loads the localized strings for the current locale from a JSON file.
   ///
-  /// The JSON file must be located in the `translation` directory, named with
-  /// the locale code (e.g., "en.json" for English).
+  /// The JSON file is expected to be located in the `translation` directory and
+  /// named based on the locale's language code (e.g., `en.json` for English).
   ///
-  /// - Returns: A [Future] that completes with `true` when the loading is complete.
+  /// - Returns: A [Future] that completes with `true` once the loading is finished.
   Future<bool> load() async {
     String jsonString = await rootBundle.loadString(
         'packages/main_auth/src/translation/${locale.languageCode}.json');
@@ -52,29 +54,29 @@ class AuthLocalizations {
     return true;
   }
 
-  /// Retrieves the localized message for the given key.
+  /// Retrieves the localized string for the given [key].
   ///
-  /// - Parameters:
-  ///   - [key]: The key for the validation message.
+  /// - [key]: The key corresponding to the desired validation message.
   ///
-  /// - Returns: The localized string for the key, or null if the key is not found.
+  /// - Returns: The localized string if found, or `null` if the key is not present.
   String? translate(String? key) {
     return _localizedStrings[key!];
   }
 }
 
-/// A delegate class responsible for loading [AuthLocalizations] based on the current locale.
+/// A delegate responsible for loading [AuthLocalizations] based on the device's locale.
 ///
-/// This delegate helps in managing different languages for validation messages
-/// by loading the respective localization files.
+/// This delegate helps manage multiple languages by loading the appropriate
+/// localization files for each supported locale.
 class _AuthLocalizationsDelegate
     extends LocalizationsDelegate<AuthLocalizations> {
   const _AuthLocalizationsDelegate();
 
-  /// Checks if the given locale is supported (currently "en" and "ar").
+  /// Checks whether the given [locale] is supported by the app.
   ///
-  /// - Parameters:
-  ///   - [locale]: The locale to check.
+  /// Currently, the supported languages are English ("en") and Arabic ("ar").
+  ///
+  /// - [locale]: The locale to check.
   ///
   /// - Returns: `true` if the locale is supported, otherwise `false`.
   @override
@@ -82,10 +84,12 @@ class _AuthLocalizationsDelegate
     return ["en", "ar"].contains(locale.languageCode);
   }
 
-  /// Loads the [AuthLocalizations] for the given locale.
+  /// Loads the [AuthLocalizations] for the provided [locale].
   ///
-  /// - Parameters:
-  ///   - [locale]: The locale for which the localizations should be loaded.
+  /// This method loads the corresponding localization file based on the locale
+  /// and returns the [AuthLocalizations] instance with the localized messages.
+  ///
+  /// - [locale]: The locale for which the localizations should be loaded.
   ///
   /// - Returns: A [Future] that completes with the loaded [AuthLocalizations] instance.
   @override
@@ -97,18 +101,19 @@ class _AuthLocalizationsDelegate
 
   /// Determines whether the localizations should be reloaded when the delegate changes.
   ///
-  /// - Parameters:
-  ///   - [old]: The old delegate to compare against.
+  /// This method is typically called when localization files are dynamically updated.
   ///
-  /// - Returns: `false` as reloading is not necessary.
+  /// - [old]: The old delegate to compare against.
+  ///
+  /// - Returns: `false`, indicating that reloading is not necessary.
   @override
   bool shouldReload(_AuthLocalizationsDelegate old) => false;
 }
 
-/// This class represents a validation message, with support for localization.
+/// Represents a validation message, with support for localization.
 ///
 /// - [key]: The key used to retrieve the localized message.
-/// - [message]: The default message, which is used if no localized message is found.
+/// - [message]: The default message used if no localization is available for the key.
 class AuthMessage {
   final String? key;
   String? message;
@@ -118,15 +123,14 @@ class AuthMessage {
     this.message,
   });
 
-  /// Localizes the validation message by looking up the key in the localizations.
+  /// Retrieves the localized message for the given key from the [BuildContext].
   ///
-  /// If the key is found, the localized message will be returned. If no localization is found,
-  /// the default message is used instead.
+  /// If the key is found in the localized strings, it returns the corresponding
+  /// message. If no localized message is found, the default [message] is returned.
   ///
-  /// - Parameters:
-  ///   - [context]: The current BuildContext used for localization.
+  /// - [context]: The current [BuildContext] used for accessing localization.
   ///
-  /// - Returns: The localized message or the default message if localization is not found.
+  /// - Returns: The localized message if available, or the default message.
   String? localize(BuildContext context) {
     message = AuthLocalizations.of(context)?.translate(key) ?? message;
     return message;

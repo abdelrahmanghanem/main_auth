@@ -1,5 +1,6 @@
 name: main_auth
-description: "A new Flutter project."
+description: "This package provides a customizable **Login** and **Sign-Up** screen for Flutter applications. It allows easy integration of login forms, social login buttons, and customization of titles, styles, and layouts.
+"
 version: 0.0.1
 homepage: https://github.com/abdelrahmanghanem
 repository: https://github.com/abdelrahmanghanem/main_auth
@@ -26,10 +27,10 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-   assets:
-     - assets/images/
-     - packages/main_auth/src/translation/en.json
-     - packages/main_auth/src/translation/ar.json
+  assets:
+    - assets/images/
+    - packages/main_auth/src/translation/en.json
+    - packages/main_auth/src/translation/ar.json
   #
 
   # example:

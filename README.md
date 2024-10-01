@@ -1,39 +1,21 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Main Auth
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This package provides a customizable **Login** and **Sign-Up** screen for Flutter applications. It allows easy integration of login forms, social login buttons, and customization of titles, styles, and layouts.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- **LoginScreen**: A customizable login screen with configurable top, middle, and bottom sections.
+- **SignUpScreen**: A customizable sign-up screen with support for additional fields such as phone number and confirm password.
+- **Social Login Integration**: Provides easy-to-use social login buttons for Google, Apple, Facebook, and Twitter (X).
+- **Customizable Styles**: You can apply custom button styles, titles, and layout configurations.
+- **Callback Support**: Handle actions such as login, sign-up, and social login button presses via callbacks.
 
-## Getting started
+## Installation
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add this package to your `pubspec.yaml`:
 
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  main_auth:^<latest version>
 ```
 
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
