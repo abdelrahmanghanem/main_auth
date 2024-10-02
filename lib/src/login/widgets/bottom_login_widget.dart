@@ -10,12 +10,19 @@ class BottomLoginWidget extends StatelessWidget {
   final Widget? child;
   final ButtonSocialType? buttonType;
   final ButtonDecoration? buttonStyle;
+  final List<AuthType> authTypesList;
 
   const BottomLoginWidget({
     super.key,
     this.child,
     this.buttonType,
     this.buttonStyle,
+    this.authTypesList = const [
+      AuthType.apple,
+      AuthType.google,
+      AuthType.x,
+      AuthType.facebook
+    ],
   });
 
   @override
@@ -59,11 +66,7 @@ class BottomLoginWidget extends StatelessWidget {
             SocialGroupWidgets(
               buttonType: buttonType,
               buttonStyle: buttonStyle,
-              listAuthType: const [
-                AuthType.apple,
-                AuthType.google,
-                AuthType.facebook
-              ],
+              listAuthType: authTypesList,
               onTapApple: () => log('onTapApple'),
               onTapGoogle: () => log('onTapGoogle'),
               onTapX: () => log('onTapX'),
