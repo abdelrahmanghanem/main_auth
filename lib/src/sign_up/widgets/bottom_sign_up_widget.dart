@@ -28,12 +28,7 @@ class BottomSignUpWidget extends StatelessWidget {
     this.onTapX,
     this.onTapApple,
     this.onTapFacebook,
-    this.authTypesList = const [
-      AuthType.google,
-      AuthType.x,
-      AuthType.apple,
-      AuthType.facebook,
-    ],
+    required this.authTypesList,
   });
 
   @override
@@ -47,18 +42,18 @@ class BottomSignUpWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  AuthMessage(key: "don't_have_an_account").localize(context) ??
-                      "Don't have an account?",
+                  AuthMessage(key: "you_have_an_account").localize(context) ??
+                      "You have an account?",
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 TextButton(
                   onPressed: () => Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => const SignUpScreen(),
+                      builder: (context) => const LoginScreen(),
                     ),
                   ),
                   child: Text(
-                    AuthMessage(key: 'sign_up').localize(context) ?? 'Sign up',
+                    AuthMessage(key: 'login_').localize(context) ?? 'Login',
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
                           color: Theme.of(context).primaryColor,
                         ),
@@ -83,10 +78,11 @@ class BottomSignUpWidget extends StatelessWidget {
               listAuthType: authTypesList,
               onTapFacebook: onTapFacebook,
             ),
-            TermsWidget(
-              onTermsTap: onTermsTap,
-              hideTerms: hideTerms,
-            ),
+            const SizedBox(height: 24),
+            if (!hideTerms)
+              TermsWidget(
+                onTermsTap: onTermsTap,
+              ),
           ],
         );
   }

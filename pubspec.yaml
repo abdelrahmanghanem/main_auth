@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
   main_button: ^0.0.10
-  main_text_field: ^0.0.3
+  main_text_field: ^0.0.4
   flutter_svg: ^2.0.10+1
 dev_dependencies:
   flutter_test:

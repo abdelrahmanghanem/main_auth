@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../main_auth.dart';
+
 class OrWidget extends StatelessWidget {
   final Color color;
   final TextStyle? style;
@@ -17,7 +19,7 @@ class OrWidget extends StatelessWidget {
           ),
         ),
         Text(
-          'or',
+          AuthMessage(key: 'or_').localize(context) ?? 'Or',
           style: style ??
               Theme.of(context).textTheme.bodySmall!.copyWith(color: color),
         ),

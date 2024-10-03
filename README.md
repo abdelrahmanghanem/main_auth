@@ -1,6 +1,17 @@
 # Main Auth
 
 This package provides a customizable **Login** and **Sign-Up** screen for Flutter applications. It allows easy integration of login forms, social login buttons, and customization of titles, styles, and layouts.
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Localization](#localization)
+- [Constructor Parameters For Login](#constructor-parameters-for-login)
+    - [Example Usage Login](#example-usage-login)
+- [Constructor Parameters For SignUp](#constructor-parameters-for-signup)
+    - [Example Usage SignUp](#example-usage-signup)
+- [Contributions](#contributions)
+
 
 ## Features
 
@@ -9,8 +20,6 @@ This package provides a customizable **Login** and **Sign-Up** screen for Flutte
 - **Social Login Integration**: Provides easy-to-use social login buttons for Google, Apple, Facebook, and Twitter (X).
 - **Customizable Styles**: You can apply custom button styles, titles, and layout configurations.
 - **Callback Support**: Handle actions such as login, sign-up, and social login button presses via callbacks.
-
-
 
 ## Installation
 
@@ -54,6 +63,7 @@ To enable validation message localization in the Factory Constructors, add `Vali
 | `padding`           | `EdgeInsets?`                                           | `EdgeInsets.all(12)`              | Padding around the body content.                                                                                                                                   |
 | `onLoginPressed`    | `void Function(String email, String password)?`         | `null`                           | Callback function triggered when the login button is pressed, passing the entered email and password.                                                               |
 
+# Example Usage Login
 ```dart
     LoginScreen(
       title: 'Welcome Back',
@@ -95,7 +105,7 @@ To enable validation message localization in the Factory Constructors, add `Vali
 | `onTapFacebook`           | `VoidCallback?`                                         | `null`                            | Callback function triggered when the Facebook login button is pressed.                                                                                                  |
 | `onTermsTap`              | `VoidCallback?`                                         | `null`                            | Callback function triggered when the "Terms and Conditions" link is pressed.                                                                                            |
 
-## Example Usage
+## Example Usage SignUp
 
 ```dart
     SignUpScreen(

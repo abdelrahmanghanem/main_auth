@@ -1,6 +1,10 @@
 {
   "can_not_be_empty": "Field can't be empty",
   "login_": "Login",
+  "or_": "Or",
+  "and_": "And",
+  "privacy_policy": "Privacy Policy",
+  "you_have_an_account": "You have an account?",
   "don't_have_an_account": "Don't have an account?",
   "sign_up": "Sign up",
   "sign_in_with_apple": "Sign in with Apple",

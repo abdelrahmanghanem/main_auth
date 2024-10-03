@@ -52,20 +52,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return SignUpScreen(
-      onTapFacebook: ()=>log('facebook'),
-      onTapGoogle: ()=>log('google'),
-      onTapApple: ()=>log('apple'),
-      onTapX: ()=>log('x'),
-      hideAppBar: false,
-      buttonSocialType: ButtonSocialType.icon,
-      buttonStyle: ButtonDecoration.defaultStyle,
-      padding: const EdgeInsets.all(30),
-
-      hideConfirmPasswordField: true,
-      onTermsTap: () => log('terms and conditions'),
-      onSignUpPressed: (email, password, {phone, confirmPassword}) =>
-          log('$email, $password,$phone,$confirmPassword'),
+    return LoginScreen(
+      loginType: LoginType.phone,
+      authTypesList: const [
+        AuthType.apple,
+        AuthType.google,
+      ],
+      onTapFacebook: () => log('facebook'),
+      onTapGoogle: () => log('google'),
+      onTapApple: () => log('apple'),
+      onTapX: () => log('x'),
+      onLoginPressed: (email, password) => log('$email, $password,'),
     );
   }
 }

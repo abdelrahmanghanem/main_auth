@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 
 import '../../../main_auth.dart';
@@ -7,22 +5,25 @@ import '../../widgets/or_widget.dart';
 import '../../widgets/social_group_widgets.dart';
 
 class BottomLoginWidget extends StatelessWidget {
+  final VoidCallback? onTapGoogle;
+  final VoidCallback? onTapX;
+  final VoidCallback? onTapApple;
+  final VoidCallback? onTapFacebook;
   final Widget? child;
   final ButtonSocialType? buttonType;
   final ButtonDecoration? buttonStyle;
   final List<AuthType> authTypesList;
 
   const BottomLoginWidget({
+    this.onTapGoogle,
+    this.onTapX,
+    this.onTapApple,
+    this.onTapFacebook,
     super.key,
     this.child,
     this.buttonType,
     this.buttonStyle,
-    this.authTypesList = const [
-      AuthType.apple,
-      AuthType.google,
-      AuthType.x,
-      AuthType.facebook
-    ],
+    required this.authTypesList,
   });
 
   @override
@@ -67,10 +68,10 @@ class BottomLoginWidget extends StatelessWidget {
               buttonType: buttonType,
               buttonStyle: buttonStyle,
               listAuthType: authTypesList,
-              onTapApple: () => log('onTapApple'),
-              onTapGoogle: () => log('onTapGoogle'),
-              onTapX: () => log('onTapX'),
-              onTapFacebook: () => log('onTapFacebook'),
+              onTapApple: onTapApple,
+              onTapGoogle: onTapGoogle,
+              onTapX: onTapX,
+              onTapFacebook: onTapFacebook,
             ),
           ],
         );

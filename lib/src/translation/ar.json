@@ -2,6 +2,10 @@
   "can_not_be_empty": "لا يمكن أن يكون فارغًا",
   "login_": "تسجيل الدخول",
   "sign_up": "تسجيل",
+  "or_": "أو",
+  "and_": "ٔو",
+  "privacy_policy": "سياسة الخصوصية",
+  "you_have_an_account": "لديك حساب؟",
   "sign_in_with_google": "تسجيل الدخول بواسطة جوجل",
   "sign_in_with_apple": "تسجيل الدخول بواسطة ابل",
   "sign_in_with_x": "تسجيل الدخول بواسط اكس ",
@@ -9,7 +13,7 @@
   "don't_have_an_account": "ليس لديك حساب؟",
   "enter_with": "تسجيل الدخول بواسطة",
   "forgot_password": "نسيت كلمة المرور؟",
-  "terms_conditions": "شروط السياسة والخصوصية",
+  "terms_conditions": "الشروط والأحكام",
   "by_registering": "بتسجيلك في التطبيق فأنت توافق على",
 
   "": ""

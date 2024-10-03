@@ -92,6 +92,8 @@ class SignUpScreen extends StatelessWidget {
   /// Callback function triggered when the user taps on the "Terms and Conditions" link.
   final VoidCallback? onTermsTap;
 
+   final List<AuthType> authTypesList;
+
   /// Constructor for the [SignUpScreen] widget.
   ///
   /// The constructor allows for customization of various sign-up screen sections,
@@ -121,6 +123,12 @@ class SignUpScreen extends StatelessWidget {
     this.onTapX,
     this.onTapApple,
     this.onTapFacebook,
+        this.authTypesList = const [
+      AuthType.google,
+      AuthType.x,
+      AuthType.apple,
+      AuthType.facebook,
+    ],
   });
 
   /// Builds the sign-up screen UI.
@@ -179,7 +187,9 @@ class SignUpScreen extends StatelessWidget {
                   buttonStyle: buttonStyle, // Custom button styles
                   buttonSocialType: buttonSocialType, // Social button type
                   onTermsTap: onTermsTap, // Terms and Conditions callback
+                  authTypesList: authTypesList,
                   child: bottomSignUpWidget,
+                  
                 ),
             ],
           ),

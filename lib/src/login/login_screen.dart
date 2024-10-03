@@ -65,9 +65,23 @@ class LoginScreen extends StatelessWidget {
   /// Defaults to `EdgeInsets.all(12)` if not provided.
   final EdgeInsets? padding;
 
+  /// Callback function triggered when the user taps on the Google login button.
+  final VoidCallback? onTapGoogle;
+
+  /// Callback function triggered when the user taps on the X (Twitter) login button.
+  final VoidCallback? onTapX;
+
+  /// Callback function triggered when the user taps on the Apple login button.
+  final VoidCallback? onTapApple;
+
+  /// Callback function triggered when the user taps on the Facebook login button.
+  final VoidCallback? onTapFacebook;
+
   /// A callback function that is triggered when the login button is pressed.
   /// It provides the entered email and password as arguments.
   final void Function(String email, String password)? onLoginPressed;
+  final List<AuthType> authTypesList;
+  final LoginType loginType;
 
   /// Constructor for the [LoginScreen] widget.
   ///
@@ -90,6 +104,17 @@ class LoginScreen extends StatelessWidget {
     this.onLoginPressed,
     this.buttonSocialType = ButtonSocialType.defaultType,
     this.buttonStyle = ButtonDecoration.defaultStyle,
+    this.onTapGoogle,
+    this.onTapX,
+    this.onTapApple,
+    this.onTapFacebook,
+    this.loginType = LoginType.email,
+    this.authTypesList = const [
+      AuthType.apple,
+      AuthType.google,
+      AuthType.x,
+      AuthType.facebook,
+    ],
   });
 
   /// Builds the login screen UI.
@@ -133,6 +158,8 @@ class LoginScreen extends StatelessWidget {
               // Middle login section
               if (!hideMiddleLogin)
                 MiddleLoginWidget(
+                  loginType: loginType,
+
                   onLoginPressed: onLoginPressed, // Login callback
                   child: middleLoginWidget,
                 ),
@@ -140,6 +167,11 @@ class LoginScreen extends StatelessWidget {
               // Bottom login section
               if (!hideBottomLogin)
                 BottomLoginWidget(
+                  onTapFacebook: onTapFacebook, // Facebook login callback
+                  onTapApple: onTapApple, // Apple login callback
+                  onTapGoogle: onTapGoogle, // Google login callback
+                  onTapX: onTapX, // Twitter login callback
+                  authTypesList: authTypesList,
                   buttonType: buttonSocialType,
                   buttonStyle: buttonStyle,
                   child: bottomLoginWidget,
