@@ -53,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return LoginScreen(
+      buttonSocialType: ButtonSocialType.defaultType,
       loginType: LoginType.phone,
       authTypesList: const [
         AuthType.apple,

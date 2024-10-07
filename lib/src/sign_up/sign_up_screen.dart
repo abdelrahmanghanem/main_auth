@@ -92,7 +92,9 @@ class SignUpScreen extends StatelessWidget {
   /// Callback function triggered when the user taps on the "Terms and Conditions" link.
   final VoidCallback? onTermsTap;
 
-   final List<AuthType> authTypesList;
+  final List<AuthType> authSocialTypesList;
+  final String initialCountryCode;
+  final List<String> favoriteCountryCode;
 
   /// Constructor for the [SignUpScreen] widget.
   ///
@@ -109,13 +111,13 @@ class SignUpScreen extends StatelessWidget {
     this.titleStyle,
     this.hideAppBar = false,
     this.hideTopSignUp = false,
-    this.topSignUpWidget,
     this.hideMiddleSignUp = false,
     this.middleSignUpWidget,
     this.hideBottomSignUp = false,
     this.hideConfirmPasswordField = false,
     this.hidePhoneField = false,
     this.bottomSignUpWidget,
+    this.topSignUpWidget,
     this.padding,
     this.onSignUpPressed,
     this.onTermsTap,
@@ -123,7 +125,12 @@ class SignUpScreen extends StatelessWidget {
     this.onTapX,
     this.onTapApple,
     this.onTapFacebook,
-        this.authTypesList = const [
+    this.initialCountryCode = '+20',
+    this.favoriteCountryCode = const [
+      '+20',
+      '+966',
+    ],
+    this.authSocialTypesList = const [
       AuthType.google,
       AuthType.x,
       AuthType.apple,
@@ -171,6 +178,8 @@ class SignUpScreen extends StatelessWidget {
               // Middle sign-up section
               if (!hideMiddleSignUp)
                 MiddleSignUpWidget(
+                  initialCountryCode: initialCountryCode,
+                  favoriteCountryCode: favoriteCountryCode,
                   hideConfirmPasswordField: hideConfirmPasswordField,
                   hidePhoneField: hidePhoneField,
                   onSignUpPressed: onSignUpPressed, // Sign-up callback
@@ -187,9 +196,8 @@ class SignUpScreen extends StatelessWidget {
                   buttonStyle: buttonStyle, // Custom button styles
                   buttonSocialType: buttonSocialType, // Social button type
                   onTermsTap: onTermsTap, // Terms and Conditions callback
-                  authTypesList: authTypesList,
+                  authTypesList: authSocialTypesList,
                   child: bottomSignUpWidget,
-                  
                 ),
             ],
           ),

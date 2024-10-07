@@ -27,7 +27,7 @@ class SocialGroupWidgets extends StatelessWidget {
     this.spacing = 8.0,
     this.buttonType,
     this.buttonStyle,
-    this.listAuthType = const [],
+    required this.listAuthType,
   });
 
   @override
@@ -86,7 +86,7 @@ class SocialGroupWidgets extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (Platform.isIOS) ...[
+              if (Platform.isIOS && listAuthType.contains(AuthType.apple)) ...[
                 SocialButtonWidget(
                   onTap: onTapApple,
                   buttonStyle: buttonStyle,
@@ -97,32 +97,38 @@ class SocialGroupWidgets extends StatelessWidget {
                 ),
                 SizedBox(height: spacing),
               ],
-              SocialButtonWidget(
-                onTap: onTapGoogle,
-                icon: icon,
-                buttonStyle: buttonStyle,
-                buttonType: buttonType,
-                authType: AuthType.google,
-                borderRadius: borderRadius,
-              ),
-              SizedBox(height: spacing),
-              SocialButtonWidget(
-                onTap: onTapX,
-                icon: icon,
-                buttonStyle: buttonStyle,
-                buttonType: buttonType,
-                authType: AuthType.x,
-                borderRadius: borderRadius,
-              ),
-              SizedBox(height: spacing),
-              SocialButtonWidget(
-                onTap: onTapFacebook,
-                buttonStyle: buttonStyle,
-                buttonType: buttonType,
-                authType: AuthType.facebook,
-                icon: icon,
-                borderRadius: borderRadius,
-              ),
+              if (listAuthType.contains(AuthType.google)) ...[
+                SocialButtonWidget(
+                  onTap: onTapGoogle,
+                  icon: icon,
+                  buttonStyle: buttonStyle,
+                  buttonType: buttonType,
+                  authType: AuthType.google,
+                  borderRadius: borderRadius,
+                ),
+                SizedBox(height: spacing),
+              ],
+              if (listAuthType.contains(AuthType.x)) ...[
+                SocialButtonWidget(
+                  onTap: onTapX,
+                  icon: icon,
+                  buttonStyle: buttonStyle,
+                  buttonType: buttonType,
+                  authType: AuthType.x,
+                  borderRadius: borderRadius,
+                ),
+                SizedBox(height: spacing),
+              ],
+              if (listAuthType.contains(AuthType.facebook)) ...[
+                SocialButtonWidget(
+                  onTap: onTapFacebook,
+                  buttonStyle: buttonStyle,
+                  buttonType: buttonType,
+                  authType: AuthType.facebook,
+                  icon: icon,
+                  borderRadius: borderRadius,
+                ),
+              ],
             ],
           );
   }

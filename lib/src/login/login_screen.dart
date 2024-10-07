@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../main_auth.dart';
 import 'widgets/bottom_login_widget.dart';
-import 'widgets/middle_login_widget.dart';
 import 'widgets/top_login_widget.dart';
 
 /// A stateless widget that provides a customizable login screen.
@@ -82,6 +81,11 @@ class LoginScreen extends StatelessWidget {
   final void Function(String email, String password)? onLoginPressed;
   final List<AuthType> authTypesList;
   final LoginType loginType;
+  final String initialCountryCode;
+  final List<String> favoriteCountryCode;
+  final String? Function(String?)? emailValidator;
+  final String? Function(String?)? passwordValidator;
+  final String? Function(String?)? phoneValidator;
 
   /// Constructor for the [LoginScreen] widget.
   ///
@@ -109,12 +113,20 @@ class LoginScreen extends StatelessWidget {
     this.onTapApple,
     this.onTapFacebook,
     this.loginType = LoginType.email,
+    this.initialCountryCode = '+20',
+    this.favoriteCountryCode = const [
+      '+20',
+      '+966',
+    ],
     this.authTypesList = const [
       AuthType.apple,
       AuthType.google,
       AuthType.x,
       AuthType.facebook,
     ],
+    this.emailValidator,
+    this.passwordValidator,
+    this.phoneValidator,
   });
 
   /// Builds the login screen UI.
@@ -158,9 +170,13 @@ class LoginScreen extends StatelessWidget {
               // Middle login section
               if (!hideMiddleLogin)
                 MiddleLoginWidget(
+                  favoriteCountryCode: favoriteCountryCode,
+                  initialCountryCode: initialCountryCode,
                   loginType: loginType,
-
-                  onLoginPressed: onLoginPressed, // Login callback
+                  onLoginPressed: onLoginPressed,
+                  emailValidator: emailValidator,
+                  passwordValidator: passwordValidator,
+                  phoneValidator: phoneValidator, // Login callback
                   child: middleLoginWidget,
                 ),
 

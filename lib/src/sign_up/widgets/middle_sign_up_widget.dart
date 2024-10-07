@@ -6,14 +6,18 @@ class MiddleSignUpWidget extends StatefulWidget {
   final Widget? child;
   final bool hideConfirmPasswordField;
   final bool hidePhoneField;
+  final String initialCountryCode;
+  final List<String> favoriteCountryCode;
   final void Function(String email, String password,
       {String? phone, String? confirmPassword})? onSignUpPressed;
   const MiddleSignUpWidget({
     super.key,
     this.onSignUpPressed,
     this.child,
-    this.hideConfirmPasswordField = false,
-    this.hidePhoneField = false,
+    required this.hideConfirmPasswordField,
+    required this.hidePhoneField,
+    required this.initialCountryCode,
+    required this.favoriteCountryCode,
   });
 
   @override
@@ -56,6 +60,8 @@ class _MiddleSignUpWidgetState extends State<MiddleSignUpWidget> {
               if (!widget.hidePhoneField) ...[
                 const SizedBox(height: 12),
                 MainTextField.phone(
+                  favoriteCountryCode: widget.favoriteCountryCode,
+                  initialCountryCode: widget.initialCountryCode,
                   onChanged: (value) => setState(() {
                     phone = value;
                     isPhoneEmpty = value.isEmpty;
