@@ -1,7 +1,7 @@
 name: main_auth
 description: "This package provides a customizable **Login** and **Sign-Up** screen for Flutter applications. It allows easy integration of login forms, social login buttons, and customization of titles, styles, and layouts.
 "
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/abdelrahmanghanem
 repository: https://github.com/abdelrahmanghanem/main_auth
 

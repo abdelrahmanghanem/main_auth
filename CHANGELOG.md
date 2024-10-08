@@ -1,4 +1,6 @@
-## 0.0.3
+## 0.0.4
+*  add loading in login and sign up
+* ## 0.0.3
 *  add validation for email and phone number
 
 ## 0.0.2
