@@ -18,10 +18,12 @@ class MiddleLoginWidget extends StatefulWidget {
   final String? Function(String?)? emailValidator;
   final String? Function(String?)? passwordValidator;
   final String? Function(String?)? phoneValidator;
+  final bool isLoginLoading;
   final void Function(String email, String password)? onLoginPressed;
   const MiddleLoginWidget({
     super.key,
     this.onLoginPressed,
+    this.isLoginLoading = false,
     this.child,
     required this.loginType,
     required this.initialCountryCode,
@@ -75,6 +77,7 @@ class _MiddleLoginWidgetState extends State<MiddleLoginWidget> {
               const SizedBox(height: 24),
               MainButton(
                 label: AuthMessage(key: 'login_').localize(context) ?? 'Login',
+                isLoading: widget.isLoginLoading,
                 isDisable: getDisable(),
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {

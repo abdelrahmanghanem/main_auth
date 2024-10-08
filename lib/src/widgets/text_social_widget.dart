@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../main_auth.dart';
 
 class TextSocialWidget extends StatelessWidget {
-  final AuthType authType;
+  final SocialAuth authType;
   final ButtonDecoration buttonStyle;
   const TextSocialWidget({
     super.key,
@@ -22,28 +22,28 @@ class TextSocialWidget extends StatelessWidget {
   }
 }
 
-getNameAuth({required AuthType authType, required BuildContext context}) {
+getNameAuth({required SocialAuth authType, required BuildContext context}) {
   switch (authType) {
-    case AuthType.google:
+    case SocialAuth.google:
       return AuthMessage(key: "sign_in_with_google").localize(context) ??
           "Sign in with Google";
-    case AuthType.apple:
+    case SocialAuth.apple:
       return AuthMessage(key: "sign_in_with_apple").localize(context) ??
           "Sign in with Apple";
 
-    case AuthType.x:
+    case SocialAuth.x:
       return AuthMessage(key: "sign_in_with_x").localize(context) ??
           "Sign in with X";
 
-    case AuthType.facebook:
+    case SocialAuth.facebook:
       return AuthMessage(key: "sign_in_with_facebook").localize(context) ??
           "Sign in with Facebook";
   }
 }
 
-getTextColorAuth(ButtonDecoration buttonStyle, AuthType authType) {
-  bool isFacebook = authType == AuthType.facebook;
-  bool isX = authType == AuthType.x;
+getTextColorAuth(ButtonDecoration buttonStyle, SocialAuth authType) {
+  bool isFacebook = authType == SocialAuth.facebook;
+  bool isX = authType == SocialAuth.x;
   switch (buttonStyle) {
     case ButtonDecoration.defaultStyle:
       return isFacebook || isX ? Colors.white : Colors.black;

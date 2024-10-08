@@ -75,12 +75,14 @@ class LoginScreen extends StatelessWidget {
 
   /// Callback function triggered when the user taps on the Facebook login button.
   final VoidCallback? onTapFacebook;
+  final bool isLoginLoading;
 
   /// A callback function that is triggered when the login button is pressed.
   /// It provides the entered email and password as arguments.
   final void Function(String email, String password)? onLoginPressed;
-  final List<AuthType> authTypesList;
+  final List<SocialAuth> authSocialTypesList;
   final LoginType loginType;
+  final bool hideSocialAuth;
   final String initialCountryCode;
   final List<String> favoriteCountryCode;
   final String? Function(String?)? emailValidator;
@@ -112,17 +114,19 @@ class LoginScreen extends StatelessWidget {
     this.onTapX,
     this.onTapApple,
     this.onTapFacebook,
+    this.hideSocialAuth = false,
+    this.isLoginLoading = false,
     this.loginType = LoginType.email,
     this.initialCountryCode = '+20',
     this.favoriteCountryCode = const [
       '+20',
       '+966',
     ],
-    this.authTypesList = const [
-      AuthType.apple,
-      AuthType.google,
-      AuthType.x,
-      AuthType.facebook,
+    this.authSocialTypesList = const [
+      SocialAuth.apple,
+      SocialAuth.google,
+      SocialAuth.x,
+      SocialAuth.facebook,
     ],
     this.emailValidator,
     this.passwordValidator,
@@ -177,6 +181,8 @@ class LoginScreen extends StatelessWidget {
                   emailValidator: emailValidator,
                   passwordValidator: passwordValidator,
                   phoneValidator: phoneValidator, // Login callback
+                  isLoginLoading: isLoginLoading,
+
                   child: middleLoginWidget,
                 ),
 
@@ -187,9 +193,10 @@ class LoginScreen extends StatelessWidget {
                   onTapApple: onTapApple, // Apple login callback
                   onTapGoogle: onTapGoogle, // Google login callback
                   onTapX: onTapX, // Twitter login callback
-                  authTypesList: authTypesList,
+                  socialAuthList: authSocialTypesList,
                   buttonType: buttonSocialType,
                   buttonStyle: buttonStyle,
+                  hideSocialAuth: hideSocialAuth,
                   child: bottomLoginWidget,
                 ),
             ],

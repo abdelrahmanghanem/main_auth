@@ -91,8 +91,12 @@ class SignUpScreen extends StatelessWidget {
 
   /// Callback function triggered when the user taps on the "Terms and Conditions" link.
   final VoidCallback? onTermsTap;
+  final VoidCallback? onPrivacyTap;
+  final bool hideTerms;
+  final bool hideSocialAuth;
+  final bool isSignUpLoading;
 
-  final List<AuthType> authSocialTypesList;
+  final List<SocialAuth> authSocialTypesList;
   final String initialCountryCode;
   final List<String> favoriteCountryCode;
 
@@ -121,9 +125,13 @@ class SignUpScreen extends StatelessWidget {
     this.padding,
     this.onSignUpPressed,
     this.onTermsTap,
+    this.onPrivacyTap,
     this.onTapGoogle,
     this.onTapX,
     this.onTapApple,
+    this.hideTerms = false,
+    this.isSignUpLoading = false,
+    this.hideSocialAuth = false,
     this.onTapFacebook,
     this.initialCountryCode = '+20',
     this.favoriteCountryCode = const [
@@ -131,10 +139,10 @@ class SignUpScreen extends StatelessWidget {
       '+966',
     ],
     this.authSocialTypesList = const [
-      AuthType.google,
-      AuthType.x,
-      AuthType.apple,
-      AuthType.facebook,
+      SocialAuth.google,
+      SocialAuth.x,
+      SocialAuth.apple,
+      SocialAuth.facebook,
     ],
   });
 
@@ -182,6 +190,7 @@ class SignUpScreen extends StatelessWidget {
                   favoriteCountryCode: favoriteCountryCode,
                   hideConfirmPasswordField: hideConfirmPasswordField,
                   hidePhoneField: hidePhoneField,
+                  isSignUpLoading: isSignUpLoading,
                   onSignUpPressed: onSignUpPressed, // Sign-up callback
                   child: middleSignUpWidget,
                 ),
@@ -196,7 +205,10 @@ class SignUpScreen extends StatelessWidget {
                   buttonStyle: buttonStyle, // Custom button styles
                   buttonSocialType: buttonSocialType, // Social button type
                   onTermsTap: onTermsTap, // Terms and Conditions callback
-                  authTypesList: authSocialTypesList,
+                  onPrivacyTap: onPrivacyTap,
+                  socialAuthList: authSocialTypesList,
+                  hideTerms: hideTerms,
+                  hideSocialAuth: hideSocialAuth,
                   child: bottomSignUpWidget,
                 ),
             ],

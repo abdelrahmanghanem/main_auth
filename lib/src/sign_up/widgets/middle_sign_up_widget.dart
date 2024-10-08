@@ -8,12 +8,14 @@ class MiddleSignUpWidget extends StatefulWidget {
   final bool hidePhoneField;
   final String initialCountryCode;
   final List<String> favoriteCountryCode;
+  final bool isSignUpLoading;
   final void Function(String email, String password,
       {String? phone, String? confirmPassword})? onSignUpPressed;
   const MiddleSignUpWidget({
     super.key,
     this.onSignUpPressed,
     this.child,
+    this.isSignUpLoading = false,
     required this.hideConfirmPasswordField,
     required this.hidePhoneField,
     required this.initialCountryCode,
@@ -90,6 +92,7 @@ class _MiddleSignUpWidgetState extends State<MiddleSignUpWidget> {
                 label:
                     AuthMessage(key: 'sign_up').localize(context) ?? 'Sign up',
                 isDisable: isFormEmpty,
+                isLoading: widget.isSignUpLoading,
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {
                     widget.onSignUpPressed?.call(

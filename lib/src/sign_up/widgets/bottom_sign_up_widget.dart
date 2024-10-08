@@ -11,11 +11,13 @@ class BottomSignUpWidget extends StatelessWidget {
   final VoidCallback? onTapApple;
   final VoidCallback? onTapFacebook;
   final Widget? child;
-  final List<AuthType> authTypesList;
+  final List<SocialAuth> socialAuthList;
   final ButtonSocialType? buttonSocialType;
   final ButtonDecoration? buttonStyle;
   final void Function()? onTermsTap;
+  final void Function()? onPrivacyTap;
   final bool hideTerms;
+  final bool hideSocialAuth;
 
   const BottomSignUpWidget({
     super.key,
@@ -23,12 +25,14 @@ class BottomSignUpWidget extends StatelessWidget {
     this.buttonSocialType,
     this.buttonStyle,
     this.onTermsTap,
+    this.onPrivacyTap,
     this.hideTerms = false,
+    this.hideSocialAuth = false,
     this.onTapGoogle,
     this.onTapX,
     this.onTapApple,
     this.onTapFacebook,
-    required this.authTypesList,
+    required this.socialAuthList,
   });
 
   @override
@@ -62,26 +66,30 @@ class BottomSignUpWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(height: height),
-            const OrWidget(),
-            const SizedBox(height: height),
-            Text(
-              AuthMessage(key: 'enter_with').localize(context) ?? 'Enter with',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(height: height),
-            SocialGroupWidgets(
-              buttonType: buttonSocialType,
-              buttonStyle: buttonStyle,
-              onTapApple: onTapApple,
-              onTapGoogle: onTapGoogle,
-              onTapX: onTapX,
-              listAuthType: authTypesList,
-              onTapFacebook: onTapFacebook,
-            ),
+            if (!hideSocialAuth) ...[
+              const OrWidget(),
+              const SizedBox(height: height),
+              Text(
+                AuthMessage(key: 'enter_with').localize(context) ??
+                    'Enter with',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: height),
+              SocialGroupWidgets(
+                buttonType: buttonSocialType,
+                buttonStyle: buttonStyle,
+                onTapApple: onTapApple,
+                onTapGoogle: onTapGoogle,
+                onTapX: onTapX,
+                socialAuthList: socialAuthList,
+                onTapFacebook: onTapFacebook,
+              ),
+            ],
             const SizedBox(height: 24),
             if (!hideTerms)
               TermsWidget(
                 onTermsTap: onTermsTap,
+                onPrivacyTap: onPrivacyTap,
               ),
           ],
         );

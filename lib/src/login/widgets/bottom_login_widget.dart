@@ -12,7 +12,8 @@ class BottomLoginWidget extends StatelessWidget {
   final Widget? child;
   final ButtonSocialType? buttonType;
   final ButtonDecoration? buttonStyle;
-  final List<AuthType> authTypesList;
+  final List<SocialAuth> socialAuthList;
+  final bool hideSocialAuth;
 
   const BottomLoginWidget({
     this.onTapGoogle,
@@ -23,7 +24,8 @@ class BottomLoginWidget extends StatelessWidget {
     this.child,
     this.buttonType,
     this.buttonStyle,
-    required this.authTypesList,
+    this.hideSocialAuth = false,
+    required this.socialAuthList,
   });
 
   @override
@@ -57,22 +59,25 @@ class BottomLoginWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(height: height),
-            const OrWidget(),
-            const SizedBox(height: height),
-            Text(
-              AuthMessage(key: 'enter_with').localize(context) ?? 'Enter with',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(height: height),
-            SocialGroupWidgets(
-              buttonType: buttonType,
-              buttonStyle: buttonStyle,
-              listAuthType: authTypesList,
-              onTapApple: onTapApple,
-              onTapGoogle: onTapGoogle,
-              onTapX: onTapX,
-              onTapFacebook: onTapFacebook,
-            ),
+            if (!hideSocialAuth) ...[
+              const OrWidget(),
+              const SizedBox(height: height),
+              Text(
+                AuthMessage(key: 'enter_with').localize(context) ??
+                    'Enter with',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: height),
+              SocialGroupWidgets(
+                buttonType: buttonType,
+                buttonStyle: buttonStyle,
+                socialAuthList: socialAuthList,
+                onTapApple: onTapApple,
+                onTapGoogle: onTapGoogle,
+                onTapX: onTapX,
+                onTapFacebook: onTapFacebook,
+              ),
+            ]
           ],
         );
   }

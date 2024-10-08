@@ -14,7 +14,7 @@ enum ButtonSocialType {
   icon,
 }
 
-enum AuthType {
+enum SocialAuth {
   google,
   apple,
   x,
@@ -28,7 +28,7 @@ class SocialButtonWidget extends StatelessWidget {
   final double? height;
   final Color? iconColor;
   final Widget? icon;
-  final AuthType authType;
+  final SocialAuth authType;
   final ButtonSocialType? buttonType;
   final ButtonDecoration? buttonStyle;
   const SocialButtonWidget({
@@ -102,9 +102,9 @@ class SocialButtonWidget extends StatelessWidget {
   }
 }
 
-getBackColorAuth(ButtonDecoration buttonStyle, AuthType authType) {
-  bool isFacebook = authType == AuthType.facebook;
-  bool isX = authType == AuthType.x;
+getBackColorAuth(ButtonDecoration buttonStyle, SocialAuth authType) {
+  bool isFacebook = authType == SocialAuth.facebook;
+  bool isX = authType == SocialAuth.x;
   switch (buttonStyle) {
     case ButtonDecoration.defaultStyle:
       return isFacebook
