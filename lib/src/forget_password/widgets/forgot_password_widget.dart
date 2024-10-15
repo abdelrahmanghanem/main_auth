@@ -15,8 +15,7 @@ class ForgotPasswordWidget extends StatelessWidget {
         GestureDetector(
           onTap: onTap,
           child: Text(
-            AuthMessage(key: 'forgot_password').localize(context) ??
-                'Forgot password?',
+            SmartLocalize.forgotPassword,
             style: style ?? Theme.of(context).textTheme.bodySmall,
           ),
         ),

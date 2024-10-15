@@ -3,24 +3,9 @@ import 'package:main_auth/main_auth.dart';
 import 'package:main_button/main_button.dart';
 
 class MiddleSignUpWidget extends StatefulWidget {
-  final Widget? child;
-  final bool hideConfirmPasswordField;
-  final bool hidePhoneField;
-  final String initialCountryCode;
-  final List<String> favoriteCountryCode;
-  final bool isSignUpLoading;
-  final void Function(String email, String password,
-      {String? phone, String? confirmPassword})? onSignUpPressed;
-  const MiddleSignUpWidget({
-    super.key,
-    this.onSignUpPressed,
-    this.child,
-    this.isSignUpLoading = false,
-    required this.hideConfirmPasswordField,
-    required this.hidePhoneField,
-    required this.initialCountryCode,
-    required this.favoriteCountryCode,
-  });
+  final AuthModel signUpModel;
+
+  const MiddleSignUpWidget({super.key, required this.signUpModel});
 
   @override
   State<MiddleSignUpWidget> createState() => _MiddleSignUpWidgetState();
@@ -40,14 +25,14 @@ class _MiddleSignUpWidgetState extends State<MiddleSignUpWidget> {
       isEmailEmpty || isPhoneEmpty || isPasswordEmpty || isConfirmPasswordEmpty;
   @override
   void initState() {
-    isConfirmPasswordEmpty = !widget.hideConfirmPasswordField;
-    isPhoneEmpty = !widget.hidePhoneField;
+    isConfirmPasswordEmpty = !widget.signUpModel.hideConfirmPasswordField;
+    isPhoneEmpty = !widget.signUpModel.hidePhoneField;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.child ??
+    return widget.signUpModel.middleWidget ??
         Form(
           key: _formKey,
           child: Column(
@@ -59,11 +44,11 @@ class _MiddleSignUpWidgetState extends State<MiddleSignUpWidget> {
                   isEmailEmpty = value.isEmpty;
                 }),
               ),
-              if (!widget.hidePhoneField) ...[
+              if (!widget.signUpModel.hidePhoneField) ...[
                 const SizedBox(height: 12),
                 MainTextField.phone(
-                  favoriteCountryCode: widget.favoriteCountryCode,
-                  initialCountryCode: widget.initialCountryCode,
+                  favoriteCountryCode: widget.signUpModel.favoriteCountryCode,
+                  initialCountryCode: widget.signUpModel.initialCountryCode,
                   onChanged: (value) => setState(() {
                     phone = value;
                     isPhoneEmpty = value.isEmpty;
@@ -77,7 +62,7 @@ class _MiddleSignUpWidgetState extends State<MiddleSignUpWidget> {
                   isPasswordEmpty = value.isEmpty;
                 }),
               ),
-              if (!widget.hideConfirmPasswordField) ...[
+              if (!widget.signUpModel.hideConfirmPasswordField) ...[
                 const SizedBox(height: 12),
                 MainTextField.confirmPassword(
                   passwordValue: password,
@@ -89,13 +74,12 @@ class _MiddleSignUpWidgetState extends State<MiddleSignUpWidget> {
               ],
               const SizedBox(height: 24),
               MainButton(
-                label:
-                    AuthMessage(key: 'sign_up').localize(context) ?? 'Sign up',
+                label: SmartLocalize.signUp,
                 isDisable: isFormEmpty,
-                isLoading: widget.isSignUpLoading,
+                isLoading: widget.signUpModel.isLoading,
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {
-                    widget.onSignUpPressed?.call(
+                    widget.signUpModel.onSignUpPressed?.call(
                       email!,
                       password!,
                       phone: phone,

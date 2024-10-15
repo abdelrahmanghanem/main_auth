@@ -1,37 +1,24 @@
 import 'package:flutter/material.dart';
 
 import '../../../main_auth.dart';
+import '../../sign_up/sign_up_screen.dart';
 import '../../widgets/or_widget.dart';
 import '../../widgets/social_group_widgets.dart';
 
 class BottomLoginWidget extends StatelessWidget {
-  final VoidCallback? onTapGoogle;
-  final VoidCallback? onTapX;
-  final VoidCallback? onTapApple;
-  final VoidCallback? onTapFacebook;
-  final Widget? child;
-  final ButtonSocialType? buttonType;
-  final ButtonDecoration? buttonStyle;
-  final List<SocialAuth> socialAuthList;
-  final bool hideSocialAuth;
+  final AuthModel loginModel;
+  final AuthModel signUpModel;
 
   const BottomLoginWidget({
-    this.onTapGoogle,
-    this.onTapX,
-    this.onTapApple,
-    this.onTapFacebook,
     super.key,
-    this.child,
-    this.buttonType,
-    this.buttonStyle,
-    this.hideSocialAuth = false,
-    required this.socialAuthList,
+    required this.loginModel,
+    required this.signUpModel,
   });
 
   @override
   Widget build(BuildContext context) {
     const double height = 12.0;
-    return child ??
+    return loginModel.bottomWidget ??
         Column(
           children: [
             const SizedBox(height: height),
@@ -39,18 +26,20 @@ class BottomLoginWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  AuthMessage(key: "don't_have_an_account").localize(context) ??
-                      "Don't have an account?",
+                  SmartLocalize.dontHaveAnAccount,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
                 TextButton(
                   onPressed: () => Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => const SignUpScreen(),
+                      builder: (context) => SignUpScreen(
+                        signUpModel: signUpModel,
+                        loginModel: loginModel,
+                      ),
                     ),
                   ),
                   child: Text(
-                    AuthMessage(key: 'sign_up').localize(context) ?? 'Sign up',
+                    SmartLocalize.signUp,
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
                           color: Theme.of(context).primaryColor,
                         ),
@@ -59,24 +48,15 @@ class BottomLoginWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(height: height),
-            if (!hideSocialAuth) ...[
+            if (!loginModel.socialModel.hideSocialAuth) ...[
               const OrWidget(),
               const SizedBox(height: height),
               Text(
-                AuthMessage(key: 'enter_with').localize(context) ??
-                    'Enter with',
+                SmartLocalize.enterWith,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
               const SizedBox(height: height),
-              SocialGroupWidgets(
-                buttonType: buttonType,
-                buttonStyle: buttonStyle,
-                socialAuthList: socialAuthList,
-                onTapApple: onTapApple,
-                onTapGoogle: onTapGoogle,
-                onTapX: onTapX,
-                onTapFacebook: onTapFacebook,
-              ),
+              SocialGroupWidgets(socialModel: loginModel.socialModel),
             ]
           ],
         );

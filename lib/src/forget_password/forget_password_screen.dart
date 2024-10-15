@@ -10,26 +10,21 @@ class ForgetPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          AuthMessage(key: 'forget_password_').localize(context) ??
-              'Forget Password',
-        ),
+        title: Text(SmartLocalize.forgotPassword),
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Column(
             children: [
-              Text(
-                AuthMessage(key: 'forget_password_').localize(context) ??
-                    'Forget Password',
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
               MainTextField.email(
                 onChanged: (value) {},
               ),
               const SizedBox(height: 12),
-              MainButton(label: 'on send', onPressed: () {}),
+              MainButton(
+                label: SmartLocalize.send,
+                onPressed: () {},
+              ),
             ],
           ),
         ),

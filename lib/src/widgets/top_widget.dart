@@ -1,27 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:main_auth/main_auth.dart';
 
-class TopLoginWidget extends StatelessWidget {
-  final String? title;
-  final Widget? image;
-  final Widget? child;
-  final TextStyle? titleStyle;
-  const TopLoginWidget({
+class TopWidget extends StatelessWidget {
+  final AuthModel authModel;
+
+  const TopWidget({
     super.key,
-    this.title,
-    this.image,
-    this.child,
-    this.titleStyle,
+    required this.authModel,
   });
 
   @override
   Widget build(BuildContext context) {
-    return child ??
+    return authModel.topWidget ??
         Column(
           children: [
-            if (image != null) image!,
-            if (image != null) const SizedBox(height: 20),
+            if (authModel.image != null) authModel.image!,
+            if (authModel.image != null) const SizedBox(height: 20),
             Text(
-              title ?? 'Welcome',
+              authModel.title ?? 'Welcome',
               style: const TextStyle(color: Colors.black, fontSize: 30),
               // style: titleStyle ?? Theme.of(context).textTheme.titleLarge,
             ),

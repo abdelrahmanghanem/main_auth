@@ -7,7 +7,7 @@ import '../strings.dart';
 class SvgSocialWidget extends StatelessWidget {
   final Color? iconColor;
   final SocialAuth authType;
-  final ButtonDecoration buttonStyle;
+  final SocialButtonDecoration buttonStyle;
   const SvgSocialWidget({
     super.key,
     this.iconColor,
@@ -29,18 +29,18 @@ class SvgSocialWidget extends StatelessWidget {
   }
 }
 
-getImageAuth(SocialAuth authType, ButtonDecoration buttonStyle) {
+getImageAuth(SocialAuth authType, SocialButtonDecoration buttonStyle) {
   switch (authType) {
     case SocialAuth.google:
       return AppImages.googleIcon;
     case SocialAuth.apple:
       return AppImages.appleIcon;
     case SocialAuth.x:
-      return buttonStyle == ButtonDecoration.defaultStyle
+      return buttonStyle == SocialButtonDecoration.defaultStyle
           ? AppImages.xWhiteIcon
           : AppImages.xIcon;
     case SocialAuth.facebook:
-      return buttonStyle == ButtonDecoration.defaultStyle
+      return buttonStyle == SocialButtonDecoration.defaultStyle
           ? AppImages.facebookWhiteIcon
           : AppImages.facebookIcon;
   }

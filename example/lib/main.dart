@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:main_auth/main_auth.dart';
 
 void main() {
@@ -23,13 +22,7 @@ class MyApp extends StatelessWidget {
       locale: const Locale('ar'),
       localeResolutionCallback: (locale, supportedLocales) =>
           locale ?? const Locale('ar'),
-      localizationsDelegates: const [
-        ValidationLocalizations.delegate,
-        AuthLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate
-      ],
+      localizationsDelegates: context.smartLocalizeDelegates,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -50,34 +43,47 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return LoginScreen(
-      buttonSocialType: ButtonSocialType.defaultType,
-      loginType: LoginType.phone,
-      authSocialTypesList: const [
-        SocialAuth.apple,
-        SocialAuth.google,
-      ],
-      onTapFacebook: () => log('facebook'),
-      onTapGoogle: () => log('google'),
-      onTapApple: () => log('apple'),
-      onTapX: () => log('x'),
-      onLoginPressed: (email, password) {
-        log('$email, $password,');
-      },
+    return MainAuth(
+      loginModel: AuthModel(
+        hideAppBar: true,
+        onSignUpPressed: (email, password, {phone, confirmPassword}) =>
+            log('$email, $password,$phone, $confirmPassword,'),
+        socialModel: SocialModel(
+          onTapFacebook: () => log('facebook'),
+          onTapGoogle: () => log('google'),
+          onTapApple: () => log('apple'),
+          onTapX: () => log('x'),
+          // hideSocialAuth: true,
+          socialButtonType: SocialButtonType.defaultType,
+          // hideSocialAuth: true,
+          socialAuthList: const [
+            SocialAuth.apple,
+            SocialAuth.google,
+            SocialAuth.facebook,
+            SocialAuth.x,
+          ],
+        ),
+      ),
+      signUpModel: AuthModel(
+        hideAppBar: true,
+        onSignUpPressed: (email, password, {phone, confirmPassword}) =>
+            log('$email, $password,$phone, $confirmPassword,'),
+        socialModel: SocialModel(
+          onTapFacebook: () => log('facebook'),
+          onTapGoogle: () => log('google'),
+          onTapApple: () => log('apple'),
+          onTapX: () => log('x'),
+          socialButtonType: SocialButtonType.icon,
+          // hideSocialAuth: true,
+          // hideSocialAuth: true,
+          socialAuthList: const [
+            SocialAuth.apple,
+            SocialAuth.google,
+            SocialAuth.facebook,
+            SocialAuth.x,
+          ],
+        ),
+      ),
     );
-    // return SignUpScreen(
-    //   buttonSocialType: ButtonSocialType.defaultType,
-    //   hideSocialAuth: true,
-    //   authSocialTypesList: const [
-    //     AuthType.apple,
-    //     AuthType.google,
-    //   ],
-    //   onTapFacebook: () => log('facebook'),
-    //   onTapGoogle: () => log('google'),
-    //   onTapApple: () => log('apple'),
-    //   onTapX: () => log('x'),
-    //   onSignUpPressed: (email, password, {phone, confirmPassword}) =>
-    //       log('$email, $password,$phone, $confirmPassword,'),
-    // );
   }
 }

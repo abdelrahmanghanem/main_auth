@@ -19,7 +19,7 @@ class OrWidget extends StatelessWidget {
           ),
         ),
         Text(
-          AuthMessage(key: 'or_').localize(context) ?? 'Or',
+          SmartLocalize.or,
           style: style ??
               Theme.of(context).textTheme.bodySmall!.copyWith(color: color),
         ),

@@ -11,26 +11,11 @@ enum LoginType {
 }
 
 class MiddleLoginWidget extends StatefulWidget {
-  final Widget? child;
-  final LoginType loginType;
-  final String initialCountryCode;
-  final List<String> favoriteCountryCode;
-  final String? Function(String?)? emailValidator;
-  final String? Function(String?)? passwordValidator;
-  final String? Function(String?)? phoneValidator;
-  final bool isLoginLoading;
-  final void Function(String email, String password)? onLoginPressed;
+  final AuthModel loginModel;
+
   const MiddleLoginWidget({
     super.key,
-    this.onLoginPressed,
-    this.isLoginLoading = false,
-    this.child,
-    required this.loginType,
-    required this.initialCountryCode,
-    required this.favoriteCountryCode,
-    this.emailValidator,
-    this.passwordValidator,
-    this.phoneValidator,
+    required this.loginModel,
   });
 
   @override
@@ -50,18 +35,66 @@ class _MiddleLoginWidgetState extends State<MiddleLoginWidget> {
 
   bool get isEmailLoginEmpty => isEmailEmpty || isPasswordEmpty;
   bool get isPhoneLoginEmpty => isPhoneEmpty || isPasswordEmpty;
+
+  bool getDisable() {
+    switch (widget.loginModel.loginType) {
+      case LoginType.email:
+        return isEmailLoginEmpty;
+      case LoginType.phone:
+        return isPhoneLoginEmpty;
+    }
+  }
+
+  MainTextField getLoginTextFieldType() {
+    switch (widget.loginModel.loginType) {
+      case LoginType.email:
+        return MainTextField.email(
+          validator: widget.loginModel.emailValidator,
+          onChanged: (value) => setState(() {
+            email = value;
+            isEmailEmpty = value.isEmpty;
+          }),
+        );
+      case LoginType.phone:
+        return MainTextField.phone(
+          validator: widget.loginModel.phoneValidator,
+          initialCountryCode: widget.loginModel.initialCountryCode,
+          favoriteCountryCode: widget.loginModel.favoriteCountryCode,
+          onChangedCountryCode: (value) {
+            countryCode = value.toString();
+          },
+          onChanged: (value) => setState(() {
+            phone = value;
+            isPhoneEmpty = value.isEmpty;
+          }),
+        );
+    }
+  }
+
+  getOnLoginPressed() {
+    switch (widget.loginModel.loginType) {
+      case LoginType.email:
+        return widget.loginModel.onLoginPressed?.call(email!, password!);
+      case LoginType.phone:
+        return widget.loginModel.onLoginPressed?.call(
+            '${countryCode ?? widget.loginModel.initialCountryCode}$phone',
+            password!);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return widget.child ??
+    return widget.loginModel.middleWidget ??
         Form(
           key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(SmartLocalize.about),
               getLoginTextFieldType(),
               const SizedBox(height: 12),
               MainTextField.password(
-                validator: widget.passwordValidator,
+                validator: widget.loginModel.passwordValidator,
                 onChanged: (value) => setState(() {
                   password = value;
                   isPasswordEmpty = value.isEmpty;
@@ -76,8 +109,8 @@ class _MiddleLoginWidgetState extends State<MiddleLoginWidget> {
               ),
               const SizedBox(height: 24),
               MainButton(
-                label: AuthMessage(key: 'login_').localize(context) ?? 'Login',
-                isLoading: widget.isLoginLoading,
+                label: SmartLocalize.login,
+                isLoading: widget.loginModel.isLoading,
                 isDisable: getDisable(),
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {
@@ -88,50 +121,5 @@ class _MiddleLoginWidgetState extends State<MiddleLoginWidget> {
             ],
           ),
         );
-  }
-
-  bool getDisable() {
-    switch (widget.loginType) {
-      case LoginType.email:
-        return isEmailLoginEmpty;
-      case LoginType.phone:
-        return isPhoneLoginEmpty;
-    }
-  }
-
-  MainTextField getLoginTextFieldType() {
-    switch (widget.loginType) {
-      case LoginType.email:
-        return MainTextField.email(
-          validator: widget.emailValidator,
-          onChanged: (value) => setState(() {
-            email = value;
-            isEmailEmpty = value.isEmpty;
-          }),
-        );
-      case LoginType.phone:
-        return MainTextField.phone(
-          validator: widget.phoneValidator,
-          initialCountryCode: widget.initialCountryCode,
-          favoriteCountryCode: widget.favoriteCountryCode,
-          onChangedCountryCode: (value) {
-            countryCode = value.toString();
-          },
-          onChanged: (value) => setState(() {
-            phone = value;
-            isPhoneEmpty = value.isEmpty;
-          }),
-        );
-    }
-  }
-
-  getOnLoginPressed() {
-    switch (widget.loginType) {
-      case LoginType.email:
-        return widget.onLoginPressed?.call(email!, password!);
-      case LoginType.phone:
-        return widget.onLoginPressed?.call(
-            '${countryCode ?? widget.initialCountryCode}$phone', password!);
-    }
   }
 }
