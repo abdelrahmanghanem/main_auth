@@ -4,10 +4,7 @@ import 'package:main_auth/main_auth.dart';
 class TopWidget extends StatelessWidget {
   final AuthModel authModel;
 
-  const TopWidget({
-    super.key,
-    required this.authModel,
-  });
+  const TopWidget({super.key, required this.authModel});
 
   @override
   Widget build(BuildContext context) {
