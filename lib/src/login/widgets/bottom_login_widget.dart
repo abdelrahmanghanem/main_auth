@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../../main_auth.dart';
 import '../../sign_up/sign_up_screen.dart';
-import '../../widgets/or_widget.dart';
-import '../../widgets/social_group_widgets.dart';
 
 class BottomLoginWidget extends StatelessWidget {
   final AuthModel loginModel;

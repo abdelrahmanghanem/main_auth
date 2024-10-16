@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:main_auth/main_auth.dart';
-import 'package:main_button/main_button.dart';
 
 class MiddleSignUpWidget extends StatefulWidget {
   final AuthModel signUpModel;
