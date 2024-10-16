@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../main_auth.dart';
+import '../../main_auth.dart';
+import '../forget_password/forget_password_screen.dart';
 
 class ForgotPasswordWidget extends StatelessWidget {
-  final void Function()? onTap;
   final TextStyle? style;
-  const ForgotPasswordWidget({super.key, this.onTap, this.style});
+  const ForgotPasswordWidget({super.key, this.style});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,11 @@ class ForgotPasswordWidget extends StatelessWidget {
       children: [
         const SizedBox(height: 8),
         GestureDetector(
-          onTap: onTap,
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const ForgetPasswordScreen(),
+            ),
+          ),
           child: Text(
             SmartLocalize.forgotPassword,
             style: style ?? Theme.of(context).textTheme.bodySmall,

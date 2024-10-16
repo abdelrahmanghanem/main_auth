@@ -1,5 +1,6 @@
+## 0.0.6
+*  make accessible to all widgets
 ## 0.0.5
-
 *  use smart_localize package
 ## 0.0.4
 *  add loading in login and sign up

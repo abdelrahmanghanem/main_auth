@@ -28,7 +28,7 @@ class SocialButtonWidget extends StatelessWidget {
   final double? height;
   final Color? iconColor;
 
-  final SocialAuth authType;
+  final SocialAuth socialAuth;
   final SocialButtonType? socialButtonType;
   final SocialButtonDecoration? buttonStyle;
   const SocialButtonWidget({
@@ -38,7 +38,7 @@ class SocialButtonWidget extends StatelessWidget {
     this.width,
     this.height,
     this.iconColor,
-    required this.authType,
+    required this.socialAuth,
     this.socialButtonType = SocialButtonType.defaultType,
     this.buttonStyle = SocialButtonDecoration.defaultStyle,
   });
@@ -54,7 +54,7 @@ class SocialButtonWidget extends StatelessWidget {
         height: height ?? 44,
         // padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
-          color: getBackColorAuth(buttonStyle!, authType),
+          color: getBackColorAuth(buttonStyle!, socialAuth),
           boxShadow: const [
             BoxShadow(
               color: Color(0x0C000000),
@@ -75,7 +75,7 @@ class SocialButtonWidget extends StatelessWidget {
           child: socialButtonType == SocialButtonType.icon
               ? SvgSocialWidget(
                   iconColor: iconColor,
-                  authType: authType,
+                  authType: socialAuth,
                   buttonStyle: buttonStyle!,
                 )
               : Row(
@@ -84,12 +84,12 @@ class SocialButtonWidget extends StatelessWidget {
                   children: [
                     SvgSocialWidget(
                       iconColor: iconColor,
-                      authType: authType,
+                      authType: socialAuth,
                       buttonStyle: buttonStyle!,
                     ),
                     const SizedBox(width: 10),
                     TextSocialWidget(
-                      authType: authType,
+                      authType: socialAuth,
                       buttonStyle: buttonStyle!,
                     )
                   ],

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../main_auth.dart';
 import '../../widgets/or_widget.dart';
 import '../../widgets/social_group_widgets.dart';
-import 'terms_widget.dart';
 
 class BottomSignUpWidget extends StatelessWidget {
   final AuthModel signUpModel;

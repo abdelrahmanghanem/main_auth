@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:main_auth/main_auth.dart';
-import 'package:main_button/main_button.dart';
-
-import '../../forget_password/forget_password_screen.dart';
-import '../../forget_password/widgets/forgot_password_widget.dart';
 
 enum LoginType {
   email,
@@ -45,8 +41,8 @@ class _MiddleLoginWidgetState extends State<MiddleLoginWidget> {
     }
   }
 
-  MainTextField getLoginTextFieldType() {
-    switch (widget.loginModel.loginType) {
+  MainTextField getLoginTextFieldType({required LoginType loginType}) {
+    switch (loginType) {
       case LoginType.email:
         return MainTextField.email(
           validator: widget.loginModel.emailValidator,
@@ -91,7 +87,7 @@ class _MiddleLoginWidgetState extends State<MiddleLoginWidget> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(SmartLocalize.about),
-              getLoginTextFieldType(),
+              getLoginTextFieldType(loginType: widget.loginModel.loginType),
               const SizedBox(height: 12),
               MainTextField.password(
                 validator: widget.loginModel.passwordValidator,
@@ -100,13 +96,7 @@ class _MiddleLoginWidgetState extends State<MiddleLoginWidget> {
                   isPasswordEmpty = value.isEmpty;
                 }),
               ),
-              ForgotPasswordWidget(
-                onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const ForgetPasswordScreen(),
-                  ),
-                ),
-              ),
+              const ForgotPasswordWidget(),
               const SizedBox(height: 24),
               MainButton(
                 label: SmartLocalize.login,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../main_auth.dart';
+import '../../main_auth.dart';
 
 class TermsWidget extends StatelessWidget {
   final void Function()? onTermsTap;
