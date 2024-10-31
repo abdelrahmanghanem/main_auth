@@ -46,8 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return MainAuth(
       loginModel: AuthModel(
         hideAppBar: true,
-        onSignUpPressed: (email, password, {phone, confirmPassword}) =>
-            log('$email, $password,$phone, $confirmPassword,'),
+        isLoading: true,
+        onPressed: (email, password, phone, name) =>
+            log('$email, $password,$phone'),
         socialModel: SocialModel(
           onTapFacebook: () => log('facebook'),
           onTapGoogle: () => log('google'),
@@ -66,13 +67,15 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       signUpModel: AuthModel(
         hideAppBar: true,
-        onSignUpPressed: (email, password, {phone, confirmPassword}) =>
-            log('$email, $password,$phone, $confirmPassword,'),
+        isLoading: true,
+        onPressed: (email, password, phone, name) =>
+            log('$email, $password,$phone '),
         socialModel: SocialModel(
           onTapFacebook: () => log('facebook'),
           onTapGoogle: () => log('google'),
           onTapApple: () => log('apple'),
           onTapX: () => log('x'),
+
           socialButtonType: SocialButtonType.icon,
           // hideSocialAuth: true,
           // hideSocialAuth: true,

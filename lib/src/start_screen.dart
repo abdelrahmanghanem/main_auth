@@ -15,47 +15,36 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: Column(
-        children: [
-          Row(
-            children: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => LoginScreen(
-                      signUpModel: signUpModel,
-                      loginModel: loginModel,
-                    ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SafeArea(
+            child: Column(
+          children: [
+            MainButton(
+              label: SmartLocalize.login,
+              onPressed: () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => LoginScreen(
+                    signUpModel: signUpModel,
+                    loginModel: loginModel,
                   ),
                 ),
-                child: Text(
-                  SmartLocalize.login,
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: Theme.of(context).primaryColor,
-                      ),
-                ),
               ),
-              TextButton(
-                onPressed: () => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => SignUpScreen(
-                      signUpModel: signUpModel,
-                      loginModel: loginModel,
-                    ),
+            ),
+            MainButton(
+              label: SmartLocalize.signUp,
+              onPressed: () => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => SignUpScreen(
+                    signUpModel: signUpModel,
+                    loginModel: loginModel,
                   ),
                 ),
-                child: Text(
-                  SmartLocalize.signUp,
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: Theme.of(context).primaryColor,
-                      ),
-                ),
               ),
-            ],
-          ),
-        ],
-      )),
+            ),
+          ],
+        )),
+      ),
     );
   }
 }

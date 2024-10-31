@@ -70,11 +70,13 @@ class _MiddleLoginWidgetState extends State<MiddleLoginWidget> {
   getOnLoginPressed() {
     switch (widget.loginModel.loginType) {
       case LoginType.email:
-        return widget.loginModel.onLoginPressed?.call(email!, password!);
+        return widget.loginModel.onPressed?.call(email!, password!, null, null);
       case LoginType.phone:
-        return widget.loginModel.onLoginPressed?.call(
+        return widget.loginModel.onPressed?.call(
             '${countryCode ?? widget.loginModel.initialCountryCode}$phone',
-            password!);
+            password!,
+            null,
+            null);
     }
   }
 

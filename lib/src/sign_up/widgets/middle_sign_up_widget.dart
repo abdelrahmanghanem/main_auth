@@ -14,14 +14,20 @@ class _MiddleSignUpWidgetState extends State<MiddleSignUpWidget> {
   late bool isConfirmPasswordEmpty;
   late bool isPhoneEmpty;
   final _formKey = GlobalKey<FormState>();
+  String? name;
   String? email;
   String? phone;
   String? password;
   String? confirmPassword;
   bool isEmailEmpty = true;
+  bool isNameEmpty = true;
   bool isPasswordEmpty = true;
   bool get isFormEmpty =>
-      isEmailEmpty || isPhoneEmpty || isPasswordEmpty || isConfirmPasswordEmpty;
+      isNameEmpty ||
+      isEmailEmpty ||
+      isPhoneEmpty ||
+      isPasswordEmpty ||
+      isConfirmPasswordEmpty;
   @override
   void initState() {
     isConfirmPasswordEmpty = !widget.signUpModel.hideConfirmPasswordField;
@@ -37,6 +43,15 @@ class _MiddleSignUpWidgetState extends State<MiddleSignUpWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              MainTextField(
+                validator: validateNonEmptyFormat,
+                title: SmartLocalize.name,
+                isRequired: true,
+                onChanged: (value) => setState(() {
+                  name = value;
+                  isNameEmpty = value.isEmpty;
+                }),
+              ),
               MainTextField.email(
                 onChanged: (value) => setState(() {
                   email = value;
@@ -78,12 +93,8 @@ class _MiddleSignUpWidgetState extends State<MiddleSignUpWidget> {
                 isLoading: widget.signUpModel.isLoading,
                 onPressed: () {
                   if (_formKey.currentState?.validate() ?? false) {
-                    widget.signUpModel.onSignUpPressed?.call(
-                      email!,
-                      password!,
-                      phone: phone,
-                      confirmPassword: confirmPassword,
-                    );
+                    widget.signUpModel.onPressed
+                        ?.call(email!, password!, phone, name);
                   }
                 },
               ),

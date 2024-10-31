@@ -1,3 +1,5 @@
+## 0.0.8
+*  handle start screen
 ## 0.0.7
 *  create start screen
 * ## 0.0.6

@@ -28,11 +28,7 @@ class AuthModel {
 
   /// Callback when the sign-up button is pressed.
   final void Function(
-    String email,
-    String password, {
-    String? phone,
-    String? confirmPassword,
-  })? onSignUpPressed;
+      String email, String password, String? phone, String? name)? onPressed;
 
   /// Callback when the terms are tapped.
   final VoidCallback? onTermsTap;
@@ -42,9 +38,6 @@ class AuthModel {
 
   /// Determines whether to hide the terms and conditions section.
   final bool hideTerms;
-
-  /// Callback when the login button is pressed.
-  final void Function(String email, String password)? onLoginPressed;
 
   /// The type of login method to use.
   final LoginType loginType;
@@ -70,7 +63,7 @@ class AuthModel {
     this.hideBottom = false,
     this.hideConfirmPasswordField = false,
     this.hidePhoneField = false,
-    this.onSignUpPressed,
+    this.onPressed,
     this.onTermsTap,
     this.onPrivacyTap,
     this.hideTerms = false,
@@ -81,7 +74,6 @@ class AuthModel {
     this.hideMiddle = false,
     this.middleWidget,
     this.bottomWidget,
-    this.onLoginPressed,
     this.loginType = LoginType.email,
     this.emailValidator,
     this.passwordValidator,
