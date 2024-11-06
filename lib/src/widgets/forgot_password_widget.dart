@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:smart_localize/smart_localize.dart';
 
-import '../../main_auth.dart';
 import '../forget_password/forget_password_screen.dart';
 
 class ForgotPasswordWidget extends StatelessWidget {

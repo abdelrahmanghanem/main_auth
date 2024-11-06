@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:main_button/main_button.dart';
+import 'package:smart_localize/smart_localize.dart';
 
 import '../main_auth.dart';
 import 'sign_up/sign_up_screen.dart';

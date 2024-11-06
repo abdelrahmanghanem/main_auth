@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../main_auth.dart';
+import 'package:smart_localize/smart_localize.dart';
 
 class OrWidget extends StatelessWidget {
   final Color color;

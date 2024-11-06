@@ -1,7 +1,6 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:main_auth/main_auth.dart';
+import 'package:smart_localize/smart_localize.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,50 +42,59 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return MainAuth(
-      loginModel: AuthModel(
-        hideAppBar: true,
-        isLoading: true,
-        onPressed: (email, password, phone, name) =>
-            log('$email, $password,$phone'),
-        socialModel: SocialModel(
-          onTapFacebook: () => log('facebook'),
-          onTapGoogle: () => log('google'),
-          onTapApple: () => log('apple'),
-          onTapX: () => log('x'),
-          // hideSocialAuth: true,
-          socialButtonType: SocialButtonType.defaultType,
-          // hideSocialAuth: true,
-          socialAuthList: const [
-            SocialAuth.apple,
-            SocialAuth.google,
-            SocialAuth.facebook,
-            SocialAuth.x,
-          ],
-        ),
-      ),
-      signUpModel: AuthModel(
-        hideAppBar: true,
-        isLoading: true,
-        onPressed: (email, password, phone, name) =>
-            log('$email, $password,$phone '),
-        socialModel: SocialModel(
-          onTapFacebook: () => log('facebook'),
-          onTapGoogle: () => log('google'),
-          onTapApple: () => log('apple'),
-          onTapX: () => log('x'),
-
-          socialButtonType: SocialButtonType.icon,
-          // hideSocialAuth: true,
-          // hideSocialAuth: true,
-          socialAuthList: const [
-            SocialAuth.apple,
-            SocialAuth.google,
-            SocialAuth.facebook,
-            SocialAuth.x,
+    return const Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            ForgotPasswordWidget(),
           ],
         ),
       ),
     );
+    // return MainAuth(
+    //   loginModel: AuthModel(
+    //     hideAppBar: true,
+    //     isLoading: true,
+    //     onPressed: (email, password, phone, name) =>
+    //         log('$email, $password,$phone'),
+    //     socialModel: SocialModel(
+    //       onTapFacebook: () => log('facebook'),
+    //       onTapGoogle: () => log('google'),
+    //       onTapApple: () => log('apple'),
+    //       onTapX: () => log('x'),
+    //       // hideSocialAuth: true,
+    //       socialButtonType: SocialButtonType.defaultType,
+    //       // hideSocialAuth: true,
+    //       socialAuthList: const [
+    //         SocialAuth.apple,
+    //         SocialAuth.google,
+    //         SocialAuth.facebook,
+    //         SocialAuth.x,
+    //       ],
+    //     ),
+    //   ),
+    //   signUpModel: AuthModel(
+    //     hideAppBar: true,
+    //     isLoading: true,
+    //     onPressed: (email, password, phone, name) =>
+    //         log('$email, $password,$phone '),
+    //     socialModel: SocialModel(
+    //       onTapFacebook: () => log('facebook'),
+    //       onTapGoogle: () => log('google'),
+    //       onTapApple: () => log('apple'),
+    //       onTapX: () => log('x'),
+    //
+    //       socialButtonType: SocialButtonType.icon,
+    //       // hideSocialAuth: true,
+    //       // hideSocialAuth: true,
+    //       socialAuthList: const [
+    //         SocialAuth.apple,
+    //         SocialAuth.google,
+    //         SocialAuth.facebook,
+    //         SocialAuth.x,
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }

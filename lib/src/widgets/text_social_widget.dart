@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_localize/smart_localize.dart';
 
 import '../../main_auth.dart';
 

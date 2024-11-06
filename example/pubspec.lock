@@ -166,7 +166,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.7"
+    version: "0.0.8"
   main_button:
     dependency: transitive
     description:
@@ -179,10 +179,10 @@ packages:
     dependency: transitive
     description:
       name: main_text_field
-      sha256: "723df02361fb0bd2b8e30f979aa2dbf05b3ede775bb48968007402ec26351803"
+      sha256: edef47d7d757fa1f2d7b3897d68cb3a6a6822e3b4170c11623cb6118313ba208
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.7"
+    version: "0.0.8"
   matcher:
     dependency: transitive
     description:
@@ -237,7 +237,7 @@ packages:
     source: sdk
     version: "0.0.99"
   smart_localize:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: smart_localize
       sha256: "5469de79b1db24dd14070bf6dd14cf9db928080065bff952caf692633c12cf92"

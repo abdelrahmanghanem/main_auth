@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../main_auth.dart';
+import 'package:main_button/main_button.dart';
+import 'package:main_text_field/main_text_field.dart';
+import 'package:smart_localize/smart_localize.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   const ForgetPasswordScreen({super.key});

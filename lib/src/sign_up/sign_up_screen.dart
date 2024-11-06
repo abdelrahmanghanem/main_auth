@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:main_auth/src/sign_up/widgets/bottom_sign_up_widget.dart';
 import 'package:main_auth/src/sign_up/widgets/middle_sign_up_widget.dart';
+import 'package:smart_localize/smart_localize.dart';
 
 import '../../main_auth.dart';
 import '../widgets/top_widget.dart';
