@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:main_auth/main_auth.dart';
 import 'package:smart_localize/smart_localize.dart';
@@ -42,11 +44,46 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ForgotPasswordWidget(),
+            Center(
+              child: ForgotPasswordWidget(
+                forgetPasswordModel: ForgetPasswordModel.empty(
+                  otpType: OTPType.email,
+                  onSend: (email, type, onSuccess) async {
+                    log('onSend: $email, type: $type');
+                    await Future.delayed(
+                      const Duration(seconds: 2),
+                      () => onSuccess?.call(),
+                    );
+                  },
+                  onResendOTP: (email, type, onSuccess) async {
+                    log('onResendOTP: $email, type: $type');
+                    await Future.delayed(
+                      const Duration(seconds: 2),
+                      () => onSuccess?.call(),
+                    );
+                  },
+                  onVerify: (email, otp, onSuccess) async {
+                    log('onVerify: $email, OTP: $otp');
+                    await Future.delayed(
+                      const Duration(seconds: 2),
+                      () => onSuccess?.call(),
+                    );
+                  },
+                  onResetPassword: (password, onSuccess) async {
+                    log('onResetPassword: $password');
+                    await Future.delayed(
+                      const Duration(seconds: 2),
+                      () => onSuccess?.call(),
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),

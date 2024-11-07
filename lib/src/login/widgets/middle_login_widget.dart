@@ -11,10 +11,12 @@ enum LoginType {
 
 class MiddleLoginWidget extends StatefulWidget {
   final AuthModel loginModel;
+  final ForgetPasswordModel? forgetPasswordModel;
 
   const MiddleLoginWidget({
     super.key,
     required this.loginModel,
+    this.forgetPasswordModel,
   });
 
   @override
@@ -101,7 +103,10 @@ class _MiddleLoginWidgetState extends State<MiddleLoginWidget> {
                   isPasswordEmpty = value.isEmpty;
                 }),
               ),
-              const ForgotPasswordWidget(),
+              ForgotPasswordWidget(
+                forgetPasswordModel:
+                    widget.forgetPasswordModel ?? ForgetPasswordModel.empty(),
+              ),
               const SizedBox(height: 24),
               MainButton(
                 label: SmartLocalize.login,
