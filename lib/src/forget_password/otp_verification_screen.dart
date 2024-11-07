@@ -23,8 +23,7 @@ class OtpVerificationScreen extends StatefulWidget {
 }
 
 class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
-  bool isEmptyEmail = true;
-  bool isObscure = true;
+  bool isEmptyCode = true;
   String code = "";
   final formKey = GlobalKey<FormState>();
   Timer? timer;
@@ -82,7 +81,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          SmartLocalize.codeSentToEmail,
+                          SmartLocalize.enter4DigitsCode,
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         Text(
@@ -104,6 +103,10 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                 return null;
                               }
                             },
+                            onChanged: (value) => setState(() {
+                              isEmptyCode = value.isEmpty;
+                              code = value;
+                            }),
                             animationDuration:
                                 const Duration(milliseconds: 300),
                             defaultPinTheme: PinTheme(
@@ -246,6 +249,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: MainButton(
                       isLoading: isLoading,
+                      isDisable: isEmptyCode,
+                      showShadow: false,
+                      disableColor: const Color(0xffE7E7E7),
                       label: SmartLocalize.verify,
                       onPressed: onVerify,
                     ),

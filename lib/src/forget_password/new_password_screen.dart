@@ -44,6 +44,8 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                         children: [
                           MainTextField.password(
                             textInputAction: TextInputAction.next,
+                            title: SmartLocalize.newPassword,
+                            style: Theme.of(context).textTheme.labelSmall,
                             onChanged: (String? value) {
                               setState(() {
                                 password = value;
@@ -54,6 +56,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                           const SizedBox(height: 16),
                           MainTextField.confirmPassword(
                             passwordValue: password,
+                            style: Theme.of(context).textTheme.labelSmall,
                             title: SmartLocalize.reTypeNewPassword,
                             textInputAction: TextInputAction.done,
                             onChanged: (String? value) {
@@ -76,6 +79,8 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: MainButton(
+                      showShadow: false,
+                      disableColor: const Color(0xffE7E7E7),
                       isDisable: isAnyFieldEmpty,
                       isLoading: isLoading,
                       label: SmartLocalize.createNewPassword,

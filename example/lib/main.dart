@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
         Locale('en'),
         Locale('ar'),
       ],
-      locale: const Locale('ar'),
+      locale: const Locale('en'),
       localeResolutionCallback: (locale, supportedLocales) =>
-          locale ?? const Locale('ar'),
+          locale ?? const Locale('en'),
       localizationsDelegates: context.smartLocalizeDelegates,
       title: 'Flutter Demo',
       theme: ThemeData(
