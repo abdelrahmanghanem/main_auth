@@ -1,3 +1,7 @@
+## 0.0.11
+
+* update text style and localization
+
 ## 0.0.10
 
 * handle import
