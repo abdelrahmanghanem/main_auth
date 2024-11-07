@@ -32,19 +32,27 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(SmartLocalize.enterEmailToResetPassword),
+              Text(
+                SmartLocalize.enterEmailToResetPassword,
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
               const SizedBox(height: 16),
               Form(
                 key: _formKey,
                 child: widget.forgetPasswordModel.otpType == OTPType.phone
                     ? MainTextField.phone(
-                        onChanged: (p0) {
-                          isEmptyEmailOrPhone = p0.isEmpty;
-                          emailOrPhone = p0;
+                        hideAsterisk: true,
+                        titleStyle: Theme.of(context).textTheme.labelSmall,
+                        onChanged: (value) {
+                          setState(() {
+                            isEmptyEmailOrPhone = value.isEmpty;
+                            emailOrPhone = value;
+                          });
                         },
                       )
                     : MainTextField.email(
                         hideAsterisk: true,
+                        titleStyle: Theme.of(context).textTheme.labelSmall,
                         onChanged: (value) {
                           setState(() {
                             isEmptyEmailOrPhone = value.isEmpty;
@@ -57,6 +65,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               MainButton(
                 label: SmartLocalize.sendOtp,
                 isDisable: isEmptyEmailOrPhone,
+                showShadow: false,
+                disableColor: const Color(0xffE7E7E7),
                 isLoading: isLoading,
                 onPressed: onSend,
               ),
