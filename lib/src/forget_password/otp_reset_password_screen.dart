@@ -1,49 +1,38 @@
-// import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 // import 'package:flutter/material.dart';
-// import 'package:jawab/core/extension/context_extension.dart';
-//
-// import '../../../../core/functions/validation_functions.dart';
-// import '../../../../core/widgets/custom_elevated_button.dart';
-// import '../../../../core/widgets/custom_text_field.dart';
-// import '../../../../core/widgets/spacer_widget.dart';
-//
+// import 'package:smart_localize/smart_localize.dart';
+
 // class OtpResetPasswordScreen extends StatefulWidget {
 //   const OtpResetPasswordScreen({super.key});
-//
+
 //   @override
 //   State<OtpResetPasswordScreen> createState() => _OtpResetPasswordScreenState();
 // }
-//
+
 // class _OtpResetPasswordScreenState extends State<OtpResetPasswordScreen> {
 //   bool isObscure2 = true;
 //   bool isObscure3 = true;
 //   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 //   String? newPassword;
 //   String? confirmPassword;
-//
+
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text("update_password").tr(),
-//         elevation: 0,
-//         backgroundColor: Colors.transparent,
-//       ),
+//       appBar: AppBar(title: Text(SmartLocalize.changePassword)),
 //       body: Form(
 //         key: _formKey,
 //         child: Center(
 //           child: Column(
 //             crossAxisAlignment: CrossAxisAlignment.start,
 //             children: [
-//               const VerticalExtraLargeSpacer(),
 //               Padding(
 //                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
 //                 child: Text(
-//                   "new_password",
-//                   style: context.bodyMedium,
-//                 ).tr(),
+//                   'enter_4_digit_code',
+//                   style: Theme.of(context).textTheme.bodyMedium,
+//                 ),
 //               ),
-//               const VerticalMediumSpacer(),
+//               const SizedBox(height: 16),
 //               Directionality(
 //                 textDirection: TextDirection.ltr,
 //                 child: CustomTextFormField(
@@ -115,7 +104,7 @@
 //                   onPressed: () async {
 //                     if (_formKey.currentState?.validate() ?? false) {
 //                       _formKey.currentState?.save();
-//
+
 //                       // await context.read<AuthProvider>().updatePassword(
 //                       //       password: newPassword!,
 //                       //     );

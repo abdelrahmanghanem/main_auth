@@ -15,7 +15,8 @@ dependencies:
   main_button: ^0.0.10
   main_text_field: ^0.0.8
   flutter_svg: ^2.0.10+1
-  smart_localize: ^0.0.8
+  smart_localize: ^0.0.9
+  pinput: ^5.0.0
 
 
 dev_dependencies:
