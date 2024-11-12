@@ -1,3 +1,11 @@
+## 0.0.13
+
+* otp length to be dynamic
+
+## 0.0.12
+
+* add token
+
 ## 0.0.11
 
 * update text style and localization
