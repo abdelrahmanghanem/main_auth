@@ -57,24 +57,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     log('onSend: $email, type: $type');
                     await Future.delayed(
                       const Duration(seconds: 2),
-                      () => onSuccess?.call(),
+                      () => onSuccess?.call('21sdf65sf231asdf5'),
                     );
                   },
-                  onResendOTP: (email, type, onSuccess) async {
+                  onResendOTP: (email, type, token, onSuccess) async {
                     log('onResendOTP: $email, type: $type');
                     await Future.delayed(
                       const Duration(seconds: 2),
                       () => onSuccess?.call(),
                     );
                   },
-                  onVerify: (email, otp, onSuccess) async {
+                  onVerify: (email, otp, token, onSuccess) async {
                     log('onVerify: $email, OTP: $otp');
                     await Future.delayed(
                       const Duration(seconds: 2),
                       () => onSuccess?.call(),
                     );
                   },
-                  onResetPassword: (password, onSuccess) async {
+                  onResetPassword: (email, password, token, onSuccess) async {
                     log('onResetPassword: $password');
                     await Future.delayed(
                       const Duration(seconds: 2),

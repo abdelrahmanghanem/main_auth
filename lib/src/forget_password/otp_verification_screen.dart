@@ -51,6 +51,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
   @override
   void initState() {
     startTimer();
+    log('Token: ${widget.forgetPasswordModel.token}');
     super.initState();
   }
 
@@ -152,6 +153,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                             widget.forgetPasswordModel
                                                 .emailOrPhone!,
                                             widget.forgetPasswordModel.otpType,
+                                            widget.forgetPasswordModel.token!,
                                             () => setState(() => tries--),
                                           );
                                         }
@@ -196,6 +198,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                                           widget.forgetPasswordModel
                                               .emailOrPhone!,
                                           widget.forgetPasswordModel.otpType,
+                                          widget.forgetPasswordModel.token!,
                                           null,
                                         );
                                       }
@@ -271,6 +274,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
       await widget.forgetPasswordModel.onVerify?.call(
         widget.forgetPasswordModel.emailOrPhone!,
         code,
+        widget.forgetPasswordModel.token!,
         () => Navigator.of(context).pushReplacement(
           MaterialPageRoute(
             builder: (context) => NewPasswordScreen(

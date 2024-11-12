@@ -83,13 +83,15 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       await widget.forgetPasswordModel.onSend?.call(
         emailOrPhone!,
         widget.forgetPasswordModel.otpType,
-        () {
+        (token) {
           setState(() => isLoading = false);
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => OtpVerificationScreen(
-                forgetPasswordModel: widget.forgetPasswordModel
-                    .copyWith(emailOrPhone: emailOrPhone),
+                forgetPasswordModel: widget.forgetPasswordModel.copyWith(
+                  emailOrPhone: emailOrPhone,
+                  token: token,
+                ),
               ),
             ),
           );
