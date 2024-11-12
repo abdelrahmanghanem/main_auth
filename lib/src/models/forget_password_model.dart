@@ -7,6 +7,7 @@ class ForgetPasswordModel {
   final OTPType otpType;
   final TextStyle? style;
   final String? token;
+  final int otpLength;
 
   final Future<void> Function(
     String emailOrPhone,
@@ -50,6 +51,7 @@ class ForgetPasswordModel {
     this.showEnterAnotherEmail = false,
     this.showTries = false,
     this.maxTries = 3,
+    this.otpLength = 6,
   });
   ForgetPasswordModel.empty({
     this.emailOrPhone,
@@ -63,6 +65,7 @@ class ForgetPasswordModel {
     this.showEnterAnotherEmail = false,
     this.showTries = false,
     this.maxTries = 3,
+    this.otpLength = 6,
   });
 
   ForgetPasswordModel copyWith({
@@ -78,6 +81,10 @@ class ForgetPasswordModel {
       onResendOTP: onResendOTP,
       onVerify: onVerify,
       onResetPassword: onResetPassword,
+      showEnterAnotherEmail: showEnterAnotherEmail,
+      showTries: showTries,
+      maxTries: maxTries,
+      otpLength: otpLength,
     );
   }
 }
