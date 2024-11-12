@@ -6,15 +6,35 @@ class ForgetPasswordModel {
   final String? emailOrPhone;
   final OTPType otpType;
   final TextStyle? style;
+  final String? token;
+
   final Future<void> Function(
-      String emailOrPhone, OTPType otpType, VoidCallback? onSuccess)? onSend;
+    String emailOrPhone,
+    OTPType otpType,
+    void Function(String token)? onSuccess,
+  )? onSend;
+
   final Future<void> Function(
-          String emailOrPhone, OTPType otpType, VoidCallback? onSuccess)?
-      onResendOTP;
+    String emailOrPhone,
+    OTPType otpType,
+    String token,
+    VoidCallback? onSuccess,
+  )? onResendOTP;
+
   final Future<void> Function(
-      String emailOrPhone, String otp, VoidCallback? onSuccess)? onVerify;
-  final Future<void> Function(String password, VoidCallback? onSuccess)?
-      onResetPassword;
+    String emailOrPhone,
+    String otp,
+    String token,
+    VoidCallback? onSuccess,
+  )? onVerify;
+
+  final Future<void> Function(
+    String email,
+    String password,
+    String token,
+    VoidCallback? onSuccess,
+  )? onResetPassword;
+
   final bool showEnterAnotherEmail;
   final bool showTries;
   final int maxTries;
@@ -22,6 +42,7 @@ class ForgetPasswordModel {
     this.emailOrPhone,
     required this.otpType,
     this.style,
+    this.token,
     required this.onSend,
     required this.onVerify,
     required this.onResendOTP,
@@ -33,6 +54,7 @@ class ForgetPasswordModel {
   ForgetPasswordModel.empty({
     this.emailOrPhone,
     this.otpType = OTPType.email,
+    this.token,
     this.style,
     this.onSend,
     this.onResendOTP,
@@ -45,9 +67,11 @@ class ForgetPasswordModel {
 
   ForgetPasswordModel copyWith({
     String? emailOrPhone,
+    String? token,
   }) {
     return ForgetPasswordModel(
       emailOrPhone: emailOrPhone ?? this.emailOrPhone,
+      token: token ?? this.token,
       otpType: otpType,
       style: style,
       onSend: onSend,

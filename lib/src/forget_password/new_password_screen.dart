@@ -100,7 +100,9 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
     if (_formKey.currentState?.validate() ?? false) {
       setState(() => isLoading = true);
       widget.forgetPasswordModel.onResetPassword?.call(
+        widget.forgetPasswordModel.emailOrPhone!,
         password!,
+        widget.forgetPasswordModel.token!,
         () {
           setState(() => isLoading = false);
           Navigator.of(context).pushAndRemoveUntil(
