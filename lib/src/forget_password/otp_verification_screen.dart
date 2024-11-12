@@ -82,7 +82,9 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          SmartLocalize.enter4DigitsCode,
+                          widget.forgetPasswordModel.otpLength == 4
+                              ? SmartLocalize.enter4DigitsCode
+                              : SmartLocalize.enter6DigitsCode,
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                         Text(
@@ -94,10 +96,11 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                           key: formKey,
                           child: Pinput(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            length: 4,
+                            length: widget.forgetPasswordModel.otpLength,
                             obscureText: false,
                             validator: (v) {
-                              if (v!.trim().length != 4) {
+                              if (v!.trim().length !=
+                                  widget.forgetPasswordModel.otpLength) {
                                 log(v.length.toString());
                                 return SmartLocalizeValidation.invalidValue;
                               } else {
