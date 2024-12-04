@@ -1,5 +1,6 @@
 name: main_auth
-description: "This package offers a customizable Login and Sign-Up screen for Flutter apps, facilitating integration of forms and social login buttons"
+description: "This package offers a customizable Login and Sign-Up screen for
+  Flutter apps, facilitating integration of forms and social login buttons"
 
 version: 0.0.11
 homepage: https://github.com/abdelrahmanghanem
@@ -12,19 +13,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  main_button: ^0.0.11
-  main_text_field: ^0.0.8
   flutter_svg: ^2.0.10+1
-  smart_localize: ^0.0.11
+  main_button: ^0.0.11
+  main_text_field: ^0.0.9
   pinput: ^5.0.0
-
+  smart_localize: ^0.0.11
 
 dev_dependencies:
-
+  flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
-
 
 flutter:
 

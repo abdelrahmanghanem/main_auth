@@ -24,7 +24,7 @@ class ForgotPasswordWidget extends StatelessWidget {
             ),
           ),
           child: Text(
-            SmartLocalize.forgotPassword,
+            SmartLocalize.forgotPassword1,
             style: forgetPasswordModel.style ??
                 Theme.of(context).textTheme.bodySmall!.copyWith(
                       color: Theme.of(context).primaryColor,

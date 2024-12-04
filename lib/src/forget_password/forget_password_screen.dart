@@ -53,6 +53,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     : MainTextField.email(
                         hideAsterisk: true,
                         titleStyle: Theme.of(context).textTheme.labelSmall,
+                        validator: (_) => null,
                         onChanged: (value) {
                           setState(() {
                             isEmptyEmailOrPhone = value.isEmpty;
