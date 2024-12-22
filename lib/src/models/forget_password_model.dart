@@ -2,45 +2,48 @@
 import 'package:flutter/material.dart';
 import 'package:main_auth/main_auth.dart';
 
+typedef OnSend = Future<void> Function(
+  String emailOrPhone,
+  OTPType otpType,
+  void Function(String token)? onSuccess,
+);
+typedef OnResendOTP = Future<void> Function(
+  String emailOrPhone,
+  OTPType otpType,
+  String token,
+  VoidCallback? onSuccess,
+);
+typedef OnVerify = Future<void> Function(
+  String emailOrPhone,
+  String otp,
+  String token,
+  VoidCallback? onSuccess,
+);
+
+typedef OnResetPassword = Future<void> Function(
+  String email,
+  String password,
+  String token,
+  VoidCallback? onSuccess,
+);
+
 class ForgetPasswordModel {
   final String? emailOrPhone;
+  final double? maxWidth;
   final OTPType otpType;
   final TextStyle? style;
   final String? token;
   final int otpLength;
-
-  final Future<void> Function(
-    String emailOrPhone,
-    OTPType otpType,
-    void Function(String token)? onSuccess,
-  )? onSend;
-
-  final Future<void> Function(
-    String emailOrPhone,
-    OTPType otpType,
-    String token,
-    VoidCallback? onSuccess,
-  )? onResendOTP;
-
-  final Future<void> Function(
-    String emailOrPhone,
-    String otp,
-    String token,
-    VoidCallback? onSuccess,
-  )? onVerify;
-
-  final Future<void> Function(
-    String email,
-    String password,
-    String token,
-    VoidCallback? onSuccess,
-  )? onResetPassword;
-
+  final OnSend? onSend;
+  final OnResendOTP? onResendOTP;
+  final OnVerify? onVerify;
+  final OnResetPassword? onResetPassword;
   final bool showEnterAnotherEmail;
   final bool showTries;
   final int maxTries;
   ForgetPasswordModel({
     this.emailOrPhone,
+    this.maxWidth = 370,
     required this.otpType,
     this.style,
     this.token,
@@ -55,6 +58,7 @@ class ForgetPasswordModel {
   });
   ForgetPasswordModel.empty({
     this.emailOrPhone,
+    this.maxWidth = 370,
     this.otpType = OTPType.email,
     this.token,
     this.style,
@@ -73,6 +77,7 @@ class ForgetPasswordModel {
     String? token,
   }) {
     return ForgetPasswordModel(
+      maxWidth: maxWidth,
       emailOrPhone: emailOrPhone ?? this.emailOrPhone,
       token: token ?? this.token,
       otpType: otpType,

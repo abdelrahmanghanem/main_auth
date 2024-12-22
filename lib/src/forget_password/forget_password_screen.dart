@@ -41,6 +41,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 key: _formKey,
                 child: widget.forgetPasswordModel.otpType == OTPType.phone
                     ? MainTextField.phone(
+                        maxWidth: widget.forgetPasswordModel.maxWidth ?? 370,
                         hideAsterisk: true,
                         titleStyle: Theme.of(context).textTheme.labelSmall,
                         onChanged: (value) {
@@ -51,6 +52,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                         },
                       )
                     : MainTextField.email(
+                        maxWidth: widget.forgetPasswordModel.maxWidth ?? 370,
                         hideAsterisk: true,
                         titleStyle: Theme.of(context).textTheme.labelSmall,
                         validator: (_) => null,
@@ -62,8 +64,9 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                         },
                       ),
               ),
-              const Spacer(),
+              SizedBox(height: 24.hh),
               MainButton(
+                maxWidth: widget.forgetPasswordModel.maxWidth,
                 label: SmartLocalize.sendOtp,
                 isDisable: isEmptyEmailOrPhone,
                 showShadow: false,

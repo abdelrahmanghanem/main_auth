@@ -1,4 +1,4 @@
-library main_auth;
+library;
 
 export 'src/login/login_screen.dart';
 export 'src/login/widgets/middle_login_widget.dart';
