@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:main_button/main_button.dart';
 import 'package:smart_localize/smart_localize.dart';
 
 import '../forget_password/forget_password_screen.dart';
 import '../models/forget_password_model.dart';
 
 export 'package:main_auth/src/models/forget_password_model.dart';
+
+enum OTPType { email, phone }
 
 class ForgotPasswordWidget extends StatelessWidget {
   final ForgetPasswordModel forgetPasswordModel;
@@ -13,8 +16,9 @@ class ForgotPasswordWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 8),
+        SizedBox(height: 8.hh),
         GestureDetector(
           onTap: () => Navigator.of(context).push(
             MaterialPageRoute(
@@ -35,5 +39,3 @@ class ForgotPasswordWidget extends StatelessWidget {
     );
   }
 }
-
-enum OTPType { email, phone }

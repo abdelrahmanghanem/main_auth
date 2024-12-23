@@ -1,3 +1,7 @@
+## 0.0.16
+
+* handle responsive for forgot password
+
 ## 0.0.15
 
 * upgrade all packages
