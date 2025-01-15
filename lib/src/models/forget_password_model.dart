@@ -42,6 +42,8 @@ class ForgetPasswordModel {
   final bool showEnterAnotherEmail;
   final bool showTries;
   final int maxTries;
+  final AlignmentDirectional screenAlignment;
+
   ForgetPasswordModel({
     this.emailOrPhone,
     this.maxWidth = 370,
@@ -57,6 +59,7 @@ class ForgetPasswordModel {
     this.showTries = false,
     this.maxTries = 3,
     this.otpLength = 6,
+    this.screenAlignment = AlignmentDirectional.topStart,
   });
   ForgetPasswordModel.empty({
     this.titleStyle,
@@ -73,6 +76,7 @@ class ForgetPasswordModel {
     this.showTries = false,
     this.maxTries = 3,
     this.otpLength = 6,
+    this.screenAlignment = AlignmentDirectional.topStart,
   });
 
   ForgetPasswordModel copyWith({
@@ -94,6 +98,7 @@ class ForgetPasswordModel {
       maxTries: maxTries,
       titleStyle: titleStyle,
       otpLength: otpLength,
+      screenAlignment: screenAlignment,
     );
   }
 }

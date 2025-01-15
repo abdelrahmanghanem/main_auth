@@ -27,71 +27,73 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
         title: Text(SmartLocalize.changePassword),
       ),
       body: SafeArea(
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Form(
-                    key: _formKey,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          MainTextField.password(
-                            textInputAction: TextInputAction.next,
-                            title: SmartLocalize.newPassword,
-                            style: Theme.of(context).textTheme.labelSmall,
-                            onChanged: (String? value) {
-                              setState(() {
-                                password = value;
-                                isEmptyPassword = (password?.isEmpty ?? true);
-                              });
-                            },
-                          ),
-                          const SizedBox(height: 16),
-                          MainTextField.confirmPassword(
-                            passwordValue: password,
-                            style: Theme.of(context).textTheme.labelSmall,
-                            title: SmartLocalize.reTypeNewPassword,
-                            textInputAction: TextInputAction.done,
-                            onChanged: (String? value) {
-                              setState(
-                                () {
-                                  confirmPassword = value;
-                                  isEmptyConfirmPassword =
-                                      confirmPassword?.isEmpty ?? true;
-                                },
-                              );
-                            },
-                            initialValue: confirmPassword,
-                          ),
-                        ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Align(
+            alignment: widget.forgetPasswordModel.screenAlignment,
+            child: SizedBox(
+              width: widget.forgetPasswordModel.maxWidth,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      MainTextField.password(
+                        textInputAction: TextInputAction.next,
+                        title: SmartLocalize.newPassword,
+                        style: Theme.of(context).textTheme.labelSmall,
+                        onChanged: (String? value) {
+                          setState(() {
+                            password = value;
+                            isEmptyPassword = (password?.isEmpty ?? true);
+                          });
+                        },
                       ),
-                    ),
+                      const SizedBox(height: 16),
+                      MainTextField.confirmPassword(
+                        passwordValue: password,
+                        style: Theme.of(context).textTheme.labelSmall,
+                        title: SmartLocalize.reTypeNewPassword,
+                        textInputAction: TextInputAction.done,
+                        onChanged: (String? value) {
+                          setState(
+                            () {
+                              confirmPassword = value;
+                              isEmptyConfirmPassword =
+                                  confirmPassword?.isEmpty ?? true;
+                            },
+                          );
+                        },
+                        initialValue: confirmPassword,
+                      ),
+                    ],
                   ),
-                  const Spacer(),
-                  const Divider(height: 32),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: MainButton(
-                      showShadow: false,
-                      disableColor: const Color(0xffE7E7E7),
-                      isDisable: isAnyFieldEmpty,
-                      isLoading: isLoading,
-                      label: SmartLocalize.createNewPassword,
-                      onPressed: onResetPassword,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-          ],
+          ),
         ),
+      ),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Divider(height: 0),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: MainButton(
+              showShadow: false,
+              disableColor: const Color(0xffE7E7E7),
+              isDisable: isAnyFieldEmpty,
+              isLoading: isLoading,
+              label: SmartLocalize.createNewPassword,
+              onPressed: onResetPassword,
+            ),
+          ),
+          const SizedBox(height: 8),
+        ],
       ),
     );
   }

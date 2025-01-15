@@ -68,18 +68,21 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
         title: Text(SmartLocalize.changePassword),
       ),
       body: SafeArea(
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Align(
+            alignment: widget.forgetPasswordModel.screenAlignment,
+            child: SizedBox(
+              width: widget.forgetPasswordModel.maxWidth ?? 370,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
                           widget.forgetPasswordModel.otpLength == 4
@@ -249,24 +252,30 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                       ],
                     ),
                   ),
-                  const Spacer(),
-                  const Divider(height: 32),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: MainButton(
-                      isLoading: isLoading,
-                      isDisable: isEmptyCode,
-                      showShadow: false,
-                      disableColor: const Color(0xffE7E7E7),
-                      label: SmartLocalize.verify,
-                      onPressed: onVerify,
-                    ),
-                  ),
+                  // const Spacer(),
                 ],
               ),
             ),
-          ],
+          ),
         ),
+      ),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Divider(height: 0),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: MainButton(
+              isLoading: isLoading,
+              isDisable: isEmptyCode,
+              showShadow: false,
+              disableColor: const Color(0xffE7E7E7),
+              label: SmartLocalize.verify,
+              onPressed: onVerify,
+            ),
+          ),
+          const SizedBox(height: 8),
+        ],
       ),
     );
   }

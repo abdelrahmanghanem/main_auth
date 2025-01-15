@@ -55,7 +55,10 @@ class _MyHomePageState extends State<MyHomePage> {
             Center(
               child: ForgotPasswordWidget(
                 forgetPasswordModel: ForgetPasswordModel.empty(
-                  maxWidth: 500,
+                  screenAlignment: MediaQuery.of(context).size.width < 400
+                      ? AlignmentDirectional.topStart
+                      : AlignmentDirectional.center,
+                  maxWidth: 370,
                   otpType: OTPType.email,
                   onSend: (email, type, onSuccess) async {
                     log('onSend: $email, type: $type');
