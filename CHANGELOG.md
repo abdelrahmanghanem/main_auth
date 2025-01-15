@@ -1,3 +1,8 @@
+## 0.0.18
+
+* update iPad layout & alignment
+
+
 ## 0.0.17
 
 * upgrade all packages
