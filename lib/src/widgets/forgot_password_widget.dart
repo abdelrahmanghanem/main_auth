@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main_button/main_button.dart';
 import 'package:smart_localize/smart_localize.dart';
 
 import '../forget_password/forget_password_screen.dart';
@@ -18,7 +17,7 @@ class ForgotPasswordWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 8.hh),
+        SizedBox(height: 8),
         GestureDetector(
           onTap: () => Navigator.of(context).push(
             MaterialPageRoute(

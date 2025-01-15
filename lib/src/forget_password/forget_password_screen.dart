@@ -22,60 +22,65 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final maxWidth = widget.forgetPasswordModel.maxWidth ?? 370;
     return Scaffold(
       appBar: AppBar(
         title: Text(SmartLocalize.forgotPassword),
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16).rr,
+          padding: const EdgeInsets.all(16),
           child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  SmartLocalize.enterEmailToResetPassword,
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-                SizedBox(height: 16.hh),
-                Form(
-                  key: _formKey,
-                  child: widget.forgetPasswordModel.otpType == OTPType.phone
-                      ? MainTextField.phone(
-                          maxWidth: widget.forgetPasswordModel.maxWidth ?? 370,
-                          hideAsterisk: true,
-                          titleStyle: Theme.of(context).textTheme.labelSmall,
-                          onChanged: (value) {
-                            setState(() {
-                              isEmptyEmailOrPhone = value.isEmpty;
-                              emailOrPhone = value;
-                            });
-                          },
-                        )
-                      : MainTextField.email(
-                          maxWidth: widget.forgetPasswordModel.maxWidth ?? 370,
-                          hideAsterisk: true,
-                          titleStyle: Theme.of(context).textTheme.labelSmall,
-                          validator: (_) => null,
-                          onChanged: (value) {
-                            setState(() {
-                              isEmptyEmailOrPhone = value.isEmpty;
-                              emailOrPhone = value;
-                            });
-                          },
-                        ),
-                ),
-                SizedBox(height: 24.hh),
-                MainButton(
-                  maxWidth: widget.forgetPasswordModel.maxWidth,
-                  label: SmartLocalize.sendOtp,
-                  isDisable: isEmptyEmailOrPhone,
-                  showShadow: false,
-                  disableColor: const Color(0xffE7E7E7),
-                  isLoading: isLoading,
-                  onPressed: onSend,
-                ),
-              ],
+            child: SizedBox(
+              width: maxWidth,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    SmartLocalize.enterEmailToResetPassword,
+                    style: widget.forgetPasswordModel.titleStyle ??
+                        Theme.of(context).textTheme.titleSmall,
+                  ),
+                  SizedBox(height: 16),
+                  Form(
+                    key: _formKey,
+                    child: widget.forgetPasswordModel.otpType == OTPType.phone
+                        ? MainTextField.phone(
+                            maxWidth: maxWidth,
+                            hideAsterisk: true,
+                            titleStyle: Theme.of(context).textTheme.labelSmall,
+                            onChanged: (value) {
+                              setState(() {
+                                isEmptyEmailOrPhone = value.isEmpty;
+                                emailOrPhone = value;
+                              });
+                            },
+                          )
+                        : MainTextField.email(
+                            maxWidth: maxWidth,
+                            hideAsterisk: true,
+                            titleStyle: Theme.of(context).textTheme.labelSmall,
+                            validator: (_) => null,
+                            onChanged: (value) {
+                              setState(() {
+                                isEmptyEmailOrPhone = value.isEmpty;
+                                emailOrPhone = value;
+                              });
+                            },
+                          ),
+                  ),
+                  SizedBox(height: 24),
+                  MainButton(
+                    maxWidth: maxWidth,
+                    label: SmartLocalize.sendOtp,
+                    isDisable: isEmptyEmailOrPhone,
+                    showShadow: false,
+                    disableColor: const Color(0xffE7E7E7),
+                    isLoading: isLoading,
+                    onPressed: onSend,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

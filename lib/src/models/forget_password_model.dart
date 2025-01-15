@@ -32,6 +32,7 @@ class ForgetPasswordModel {
   final double? maxWidth;
   final OTPType otpType;
   final TextStyle? style;
+  final TextStyle? titleStyle;
   final String? token;
   final int otpLength;
   final OnSend? onSend;
@@ -46,6 +47,7 @@ class ForgetPasswordModel {
     this.maxWidth = 370,
     required this.otpType,
     this.style,
+    this.titleStyle,
     this.token,
     required this.onSend,
     required this.onVerify,
@@ -57,6 +59,7 @@ class ForgetPasswordModel {
     this.otpLength = 6,
   });
   ForgetPasswordModel.empty({
+    this.titleStyle,
     this.emailOrPhone,
     this.maxWidth = 370,
     this.otpType = OTPType.email,
@@ -89,6 +92,7 @@ class ForgetPasswordModel {
       showEnterAnotherEmail: showEnterAnotherEmail,
       showTries: showTries,
       maxTries: maxTries,
+      titleStyle: titleStyle,
       otpLength: otpLength,
     );
   }
