@@ -30,11 +30,13 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: Center(
+          child: Align(
+            alignment: widget.forgetPasswordModel.screenAlignment,
             child: SizedBox(
               width: maxWidth,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     SmartLocalize.enterEmailToResetPassword,
@@ -69,21 +71,30 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                             },
                           ),
                   ),
-                  SizedBox(height: 24),
-                  MainButton(
-                    maxWidth: maxWidth,
-                    label: SmartLocalize.sendOtp,
-                    isDisable: isEmptyEmailOrPhone,
-                    showShadow: false,
-                    disableColor: const Color(0xffE7E7E7),
-                    isLoading: isLoading,
-                    onPressed: onSend,
-                  ),
                 ],
               ),
             ),
           ),
         ),
+      ),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Divider(height: 0),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: MainButton(
+              maxWidth: maxWidth,
+              label: SmartLocalize.sendOtp,
+              isDisable: isEmptyEmailOrPhone,
+              showShadow: false,
+              disableColor: const Color(0xffE7E7E7),
+              isLoading: isLoading,
+              onPressed: onSend,
+            ),
+          ),
+          const SizedBox(height: 8),
+        ],
       ),
     );
   }
