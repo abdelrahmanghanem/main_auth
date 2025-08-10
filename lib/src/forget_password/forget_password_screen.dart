@@ -24,6 +24,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   Widget build(BuildContext context) {
     final maxWidth = widget.forgetPasswordModel.maxWidth ?? 370;
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text(SmartLocalize.forgotPassword),
       ),
@@ -77,7 +78,8 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Column(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           Divider(height: 0),
