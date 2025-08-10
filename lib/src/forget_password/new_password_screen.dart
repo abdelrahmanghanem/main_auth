@@ -77,7 +77,8 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Column(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           const Divider(height: 0),

@@ -97,52 +97,59 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         const SizedBox(height: 16),
                         Form(
                           key: formKey,
-                          child: Pinput(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            length: widget.forgetPasswordModel.otpLength,
-                            obscureText: false,
-                            validator: (v) {
-                              if (v!.trim().length !=
-                                  widget.forgetPasswordModel.otpLength) {
-                                log(v.length.toString());
-                                return SmartLocalizeValidation.invalidValue;
-                              } else {
-                                return null;
-                              }
-                            },
-                            onChanged: (value) => setState(() {
-                              isEmptyCode = value.isEmpty;
-                              code = value;
-                            }),
-                            animationDuration:
-                                const Duration(milliseconds: 300),
-                            defaultPinTheme: PinTheme(
-                              width: 58,
-                              height: 56,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Colors.grey.shade300),
-                                borderRadius: BorderRadius.circular(8),
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Pinput(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              length: widget.forgetPasswordModel.otpLength,
+                              obscureText: false,
+                              validator: (v) {
+                                if (v!.trim().length !=
+                                    widget.forgetPasswordModel.otpLength) {
+                                  log(v.length.toString());
+                                  return SmartLocalizeValidation.invalidValue;
+                                } else {
+                                  return null;
+                                }
+                              },
+                              onChanged: (value) => setState(() {
+                                isEmptyCode = value.isEmpty;
+                                code = value;
+                              }),
+                              animationDuration:
+                                  const Duration(milliseconds: 300),
+                              defaultPinTheme: PinTheme(
+                                width: 58,
+                                height: 56,
+                                decoration: BoxDecoration(
+                                  border:
+                                      Border.all(color: Colors.grey.shade300),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                textStyle:
+                                    Theme.of(context).textTheme.labelLarge,
                               ),
-                              textStyle: Theme.of(context).textTheme.labelLarge,
-                            ),
-                            focusedPinTheme: PinTheme(
-                              width: 58,
-                              height: 56,
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                                borderRadius: BorderRadius.circular(8),
+                              focusedPinTheme: PinTheme(
+                                width: 58,
+                                height: 56,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                textStyle:
+                                    Theme.of(context).textTheme.labelLarge,
                               ),
-                              textStyle: Theme.of(context).textTheme.labelLarge,
+                              errorTextStyle:
+                                  Theme.of(context).textTheme.bodySmall,
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              onCompleted: (value) => onVerify(),
                             ),
-                            errorTextStyle:
-                                Theme.of(context).textTheme.bodySmall,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.digitsOnly
-                            ],
-                            onCompleted: (value) => onVerify(),
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -259,7 +266,8 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: Column(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           const Divider(height: 0),
