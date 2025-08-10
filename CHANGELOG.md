@@ -1,3 +1,7 @@
+## 0.0.20
+
+* fix: reset password flow
+
 ## 0.0.19
 
 * upgrade all packages

@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:main_auth/main_auth.dart';
-import 'package:main_widgets/main_widgets.dart';
 import 'package:smart_localize/smart_localize.dart';
 
 void main() {
@@ -15,8 +14,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    MainWidgetsUtil.init(context,
-        designSize: const Size(375, 812), minTextAdapt: true);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       supportedLocales: const [
