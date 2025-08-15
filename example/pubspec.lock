@@ -254,7 +254,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "0.0.19"
+    version: "0.0.20"
   main_button:
     dependency: transitive
     description:
@@ -266,11 +266,12 @@ packages:
   main_text_field:
     dependency: transitive
     description:
-      name: main_text_field
-      sha256: "55ac391e683ad70417c698a9c929e5ca1ffd45b7720cf4f8903e2e862c42cb0a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.20"
+      path: "."
+      ref: HEAD
+      resolved-ref: "9499f3f60fd252a3e310c89753313e3fffa4d25b"
+      url: "https://github.com/ma7moud3osman/main_text_field.git"
+    source: git
+    version: "0.0.22"
   main_widgets:
     dependency: "direct main"
     description:

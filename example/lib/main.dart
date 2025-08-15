@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         Locale('en'),
         Locale('ar'),
       ],
-      locale: const Locale('en'),
+      locale: const Locale('ar'),
       localeResolutionCallback: (locale, supportedLocales) =>
           locale ?? const Locale('en'),
       localizationsDelegates: context.smartLocalizeDelegates,
